@@ -13,7 +13,17 @@ class ViewController: UIViewController {
     fileprivate let cellIdentifier = "CellID"
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var weatherImage: UIImageView!
     
+    @IBOutlet weak var weatherTemperature: UILabel!
+    
+    @IBOutlet weak var cityNameLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    
+    @IBOutlet weak var speedWind: UILabel!
+    
+    @IBOutlet weak var directionWindImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
