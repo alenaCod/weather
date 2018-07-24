@@ -26,8 +26,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var directionWindImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateData()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    private func updateData(term: String = "") {
+        APIService.sharedInstance.getWeather(searchText: term, comletion: { [weak self] result in
+            
+            if let _result = result,
+                let _weatherData = _result as? JSONResponse {
+                print("success weatherData: ", _weatherData.city)
+                self?.cityNameLabel.text = _weatherData.city.name
+            } else {
+                print("to do reset")
+            }
+       
+            
+        })
+    }
+
     
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +51,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 }
+    
+    
 extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
