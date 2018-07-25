@@ -18,6 +18,7 @@
 		B3E29FE92105E47F00D7FAE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3E29FE82105E47F00D7FAE1 /* Assets.xcassets */; };
 		B3E29FEC2105E47F00D7FAE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3E29FEA2105E47F00D7FAE1 /* LaunchScreen.storyboard */; };
 		B3E29FFA2105F7B600D7FAE1 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E29FF92105F7B600D7FAE1 /* WeatherCell.swift */; };
+		B3FD8CD22108D6D700B92257 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FD8CD12108D6D700B92257 /* Util.swift */; };
 		D27EB93B5E5A3D64B3D2AB61 /* Pods_iWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 471FB579D2A11B2235ED7FF2 /* Pods_iWeather.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		B3E29FEB2105E47F00D7FAE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3E29FED2105E47F00D7FAE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3E29FF92105F7B600D7FAE1 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		B3FD8CD12108D6D700B92257 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		B3E29FE02105E47D00D7FAE1 /* iWeather */ = {
 			isa = PBXGroup;
 			children = (
+				B3FD8CD02108D6B700B92257 /* Util */,
 				B3E29FE12105E47D00D7FAE1 /* AppDelegate.swift */,
 				B3E29FF82105F70800D7FAE1 /* Extension */,
 				B3372A692107777F0017701D /* JSON Model */,
@@ -152,6 +155,14 @@
 				B3BC8AF82107BFDB003454C8 /* String + Int + Double.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B3FD8CD02108D6B700B92257 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				B3FD8CD12108D6D700B92257 /* Util.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3D826182107AFFF00693D17 /* Int + String.swift in Sources */,
+				B3FD8CD22108D6D700B92257 /* Util.swift in Sources */,
 				B3BC8AF92107BFDB003454C8 /* String + Int + Double.swift in Sources */,
 				B3E29FE42105E47D00D7FAE1 /* ViewController.swift in Sources */,
 				B38BA1352107530B0068FC78 /* APIService.swift in Sources */,

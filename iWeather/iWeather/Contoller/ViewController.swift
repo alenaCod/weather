@@ -38,11 +38,11 @@ class ViewController: UIViewController {
             //TODO: tableview reload()
         }
     }
-   
+    
     
     private var city: JSONCity? {
         didSet {
-          populateView()
+            populateView()
         }
     }
     
@@ -77,14 +77,14 @@ class ViewController: UIViewController {
         
         guard let _weatherData = weatherData,_weatherData.count
             > 0, let _recentData = _weatherData[0] as? JSONWeatherData else {
-            return
+                return
         }
-        dateLabel.text = weatherData?[0].dt_txt
-        weatherTemperature.text = _recentData.main.temp_max.toString()
-
-        humidityLabel.text = _recentData.main.humidity.toString() + "%"
-        speedWind.text = Int(_recentData.wind.speed.rounded()).toString() + "m/sec"
-        
+        dateLabel.text = _recentData.dt_txt
+        weatherTemperature.text = Util.calvineToCelsious(temp: _recentData.main)
+        humidityLabel.text = Util.percentHumidity(temp: _recentData.main)
+        //_recentData.main.humidity.toString() + "%"
+        speedWind.text = Util.wind(temp: _recentData.wind)
+        //Int(_recentData.wind.speed.rounded()).toString() + "m/sec"
         guard let _type = weatherData?[0].weather[0].main, _type != "" else {
             return
         }
@@ -98,14 +98,13 @@ class ViewController: UIViewController {
     }
     
     func displayWeatherImage (type: String){
-    // var type = weatherData?[0].weather[0].main
         print("type ++++++++ : \(type)")
         switch (type) {
-            case TypeWeather.rain.rawValue:
+        case TypeWeather.rain.rawValue:
             weatherImage.image = UIImage(named: "ic_white_day_rain")
-            case TypeWeather.clouds.rawValue:
+        case TypeWeather.clouds.rawValue:
             weatherImage.image = UIImage(named: "ic_white_day_cloudy")
-            case TypeWeather.clear.rawValue:
+        case TypeWeather.clear.rawValue:
             weatherImage.image = UIImage(named: "ic_white_day_bright")
         default:
             break
@@ -114,28 +113,28 @@ class ViewController: UIViewController {
     
     func displayWindImage(typeWind: Double){
         print("typeWind ====== : \(typeWind)")
-    switch (typeWind) {
-    case 0.0...22.0, 338.0...360.0:
-    directionWindImage.image = UIImage(named: "icon_wind_n")
-   case 23.0...67.0:
-   directionWindImage.image = UIImage(named: "icon_wind_ne")
-    case 68.0...112.0:
-    directionWindImage.image = UIImage(named: "icon_wind_e")
-    case 113.0...157.0:
-    directionWindImage.image = UIImage(named: "icon_wind_se")
-    case 158.0...202.0:
-    directionWindImage.image = UIImage(named: "icon_wind_s")
-    case 203.0...246.0:
-    directionWindImage.image = UIImage(named: "icon_wind_sw")
-    case 247.0...292.0:
-    directionWindImage.image = UIImage(named: "icon_wind_w")
-    case 293.0...237.0:
-    directionWindImage.image = UIImage(named: "icon_wind_nw")
-    default: break
-
+        switch (typeWind) {
+        case 0.0...22.0, 338.0...360.0:
+            directionWindImage.image = UIImage(named: "icon_wind_n")
+        case 23.0...67.0:
+            directionWindImage.image = UIImage(named: "icon_wind_ne")
+        case 68.0...112.0:
+            directionWindImage.image = UIImage(named: "icon_wind_e")
+        case 113.0...157.0:
+            directionWindImage.image = UIImage(named: "icon_wind_se")
+        case 158.0...202.0:
+            directionWindImage.image = UIImage(named: "icon_wind_s")
+        case 203.0...246.0:
+            directionWindImage.image = UIImage(named: "icon_wind_sw")
+        case 247.0...292.0:
+            directionWindImage.image = UIImage(named: "icon_wind_w")
+        case 293.0...237.0:
+            directionWindImage.image = UIImage(named: "icon_wind_nw")
+        default: break
+            
         }
     }
-
+    
     private func updateData(term: String = "") {
         APIService.sharedInstance.getWeather(searchText: term, comletion: { [weak self] result in
             
@@ -147,17 +146,18 @@ class ViewController: UIViewController {
             }
         })
     }
-
     
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 }
+
+
+extension ViewController: UITableViewDataSource {
     
-    
-extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
@@ -174,14 +174,14 @@ extension ViewController: UITableViewDataSource{
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//
-//    }
+    //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    //
+    //    }
 }
 
 
 extension ViewController: UITableViewDelegate {
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
     
 }
