@@ -89,26 +89,53 @@ class ViewController: UIViewController {
             return
         }
         displayWeatherImage(type:_type)
+        
+        guard let _typeWind = weatherData?[0].wind.deg.toString(), _typeWind != "" else {
+            return
+        }
+        displayWindImage(typeWind: _typeWind.toDouble())
+        
     }
     
     func displayWeatherImage (type: String){
-     var type = weatherData?[0].weather[0].main
+    // var type = weatherData?[0].weather[0].main
         print("type ++++++++ : \(type)")
         switch (type) {
             case TypeWeather.rain.rawValue:
-            weatherImage.image = UIImage(named: "ic_white_day_bright")
+            weatherImage.image = UIImage(named: "ic_white_day_rain")
             case TypeWeather.clouds.rawValue:
             weatherImage.image = UIImage(named: "ic_white_day_cloudy")
             case TypeWeather.clear.rawValue:
             weatherImage.image = UIImage(named: "ic_white_day_bright")
-            //"ic_white_day_rain"
         default:
             break
         }
-        
-      
     }
     
+    func displayWindImage(typeWind: Double){
+        print("typeWind ====== : \(typeWind)")
+    switch (typeWind) {
+    case 0.0...22.0, 338.0...360.0:
+    directionWindImage.image = UIImage(named: "icon_wind_n")
+   case 23.0...67.0:
+   directionWindImage.image = UIImage(named: "icon_wind_ne")
+    case 68.0...112.0:
+    directionWindImage.image = UIImage(named: "icon_wind_e")
+    case 113.0...157.0:
+    directionWindImage.image = UIImage(named: "icon_wind_se")
+    case 158.0...202.0:
+    directionWindImage.image = UIImage(named: "icon_wind_s")
+    case 203.0...246.0:
+    directionWindImage.image = UIImage(named: "icon_wind_sw")
+    case 247.0...292.0:
+    directionWindImage.image = UIImage(named: "icon_wind_w")
+    case 293.0...237.0:
+    directionWindImage.image = UIImage(named: "icon_wind_nw")
+    default: break
+
+        }
+    }
+
     private func updateData(term: String = "") {
         APIService.sharedInstance.getWeather(searchText: term, comletion: { [weak self] result in
             
