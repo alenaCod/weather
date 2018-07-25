@@ -10,6 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    enum TypeWeather: String {
+        case rain = "rain"
+        case clouds = "clouds"
+        case clear = "clear"
+    }
+    
     fileprivate let cellIdentifier = "CellID"
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,23 +30,92 @@ class ViewController: UIViewController {
     @IBOutlet weak var speedWind: UILabel!
     
     @IBOutlet weak var directionWindImage: UIImageView!
+    
+    
+    private var weatherData: [JSONWeatherData]? {
+        didSet {
+            populateView()
+            //TODO: tableview reload()
+        }
+    }
+   
+    
+    private var city: JSONCity? {
+        didSet {
+          populateView()
+        }
+    }
+    
+    private var main: JSONMain? {
+        didSet {
+            populateView()
+        }
+    }
+    
+    private var weather: [JSONWeather]? {
+        didSet {
+            populateView()
+            //TODO: tableview reload()
+        }
+    }
+    
+    private var wind: JSONWind? {
+        didSet {
+            populateView()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateData()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    private func populateView() {
+        cityNameLabel.text = city?.name ?? ""
+        
+        
+        guard let _weatherData = weatherData,_weatherData.count
+            > 0, let _recentData = _weatherData[0] as? JSONWeatherData else {
+            return
+        }
+        dateLabel.text = weatherData?[0].dt_txt
+        weatherTemperature.text = _recentData.main.temp_max.toString()
+
+        humidityLabel.text = _recentData.main.humidity.toString() + "%"
+        speedWind.text = Int(_recentData.wind.speed).toString() + "m/sec"
+        displayWeatherImage(type: (weatherData?[0].weather[0].main)!)
+    }
+    
+    func displayWeatherImage (type: String){
+     var type = weatherData?[0].weather[0].main
+        print("type ++++++++ : \(type)")
+        switch (type) {
+            case TypeWeather.rain.rawValue:
+            weatherImage.image = UIImage(named: "ic_white_day_rain")
+            case TypeWeather.clouds.rawValue:
+            weatherImage.image = UIImage(named: "ic_white_day_rain")
+//            typeImage.image = UIImage(named: "ic_run")
+//        case Clear:
+//            typeImage.image = UIImage(named: "ic_walk")
+//        case 4:
+//            typeImage.image = UIImage(named: "ic_hill")
+        default:
+            break
+        }
+        
+      
+    }
+    
     private func updateData(term: String = "") {
         APIService.sharedInstance.getWeather(searchText: term, comletion: { [weak self] result in
             
-            if let _result = result,
-                let _weatherData = _result as? JSONResponse {
-                print("success weatherData: ", _weatherData.city)
-                self?.cityNameLabel.text = _weatherData.city.name
+            if let _result = result as? JSONResponse {
+                self?.weatherData = _result.list
+                self?.city = _result.city
             } else {
                 print("to do reset")
             }
-       
-            
         })
     }
 

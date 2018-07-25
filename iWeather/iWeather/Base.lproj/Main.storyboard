@@ -103,7 +103,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uR3-lh-Z7d">
-                                        <rect key="frame" x="19" y="68" width="36" height="21"/>
+                                        <rect key="frame" x="19" y="68" width="222" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -208,6 +208,7 @@
                         <outlet property="speedWind" destination="5rK-Z5-jsK" id="r6F-7C-dlL"/>
                         <outlet property="tableView" destination="bO3-5y-bTm" id="fmJ-oM-M6K"/>
                         <outlet property="weatherImage" destination="x32-GZ-2tN" id="hwj-NT-io3"/>
+                        <outlet property="weatherTemperature" destination="Amg-RC-tDF" id="3NE-w3-aNU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

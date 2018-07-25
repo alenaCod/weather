@@ -10,6 +10,8 @@
 		B3372A6B210777D70017701D /* JSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3372A6A210777D70017701D /* JSONResponse.swift */; };
 		B38BA13321073BF90068FC78 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38BA13221073BF90068FC78 /* CurrentWeather.swift */; };
 		B38BA1352107530B0068FC78 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38BA1342107530B0068FC78 /* APIService.swift */; };
+		B3BC8AF92107BFDB003454C8 /* String + Int + Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BC8AF82107BFDB003454C8 /* String + Int + Double.swift */; };
+		B3D826182107AFFF00693D17 /* Int + String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D826172107AFFF00693D17 /* Int + String.swift */; };
 		B3E29FE22105E47D00D7FAE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E29FE12105E47D00D7FAE1 /* AppDelegate.swift */; };
 		B3E29FE42105E47D00D7FAE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E29FE32105E47D00D7FAE1 /* ViewController.swift */; };
 		B3E29FE72105E47D00D7FAE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3E29FE52105E47D00D7FAE1 /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 		B3372A6A210777D70017701D /* JSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONResponse.swift; sourceTree = "<group>"; };
 		B38BA13221073BF90068FC78 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		B38BA1342107530B0068FC78 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		B3BC8AF82107BFDB003454C8 /* String + Int + Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Int + Double.swift"; sourceTree = "<group>"; };
+		B3D826172107AFFF00693D17 /* Int + String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + String.swift"; sourceTree = "<group>"; };
 		B3E29FDE2105E47D00D7FAE1 /* iWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E29FE12105E47D00D7FAE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3E29FE32105E47D00D7FAE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +77,14 @@
 			path = "JSON Model";
 			sourceTree = "<group>";
 		};
+		B3BC8AFB2107C146003454C8 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				B38BA1342107530B0068FC78 /* APIService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		B3E29FD52105E47D00D7FAE1 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +109,7 @@
 				B3E29FE12105E47D00D7FAE1 /* AppDelegate.swift */,
 				B3E29FF82105F70800D7FAE1 /* Extension */,
 				B3372A692107777F0017701D /* JSON Model */,
+				B3BC8AFB2107C146003454C8 /* API */,
 				B3E29FF72105F6FB00D7FAE1 /* Model */,
 				B3E29FF52105F67E00D7FAE1 /* Contoller */,
 				B3E29FF62105F6E400D7FAE1 /* View */,
@@ -128,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				B38BA13221073BF90068FC78 /* CurrentWeather.swift */,
-				B38BA1342107530B0068FC78 /* APIService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -136,6 +148,8 @@
 		B3E29FF82105F70800D7FAE1 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B3D826172107AFFF00693D17 /* Int + String.swift */,
+				B3BC8AF82107BFDB003454C8 /* String + Int + Double.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -254,6 +268,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3D826182107AFFF00693D17 /* Int + String.swift in Sources */,
+				B3BC8AF92107BFDB003454C8 /* String + Int + Double.swift in Sources */,
 				B3E29FE42105E47D00D7FAE1 /* ViewController.swift in Sources */,
 				B38BA1352107530B0068FC78 /* APIService.swift in Sources */,
 				B3372A6B210777D70017701D /* JSONResponse.swift in Sources */,

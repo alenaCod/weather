@@ -9,7 +9,7 @@
 import Foundation
 
 struct JSONResponse: Codable {
-    let cnt:Int
+    //let cnt:Int
     let city: JSONCity
     let list: [JSONWeatherData]
 }
@@ -19,6 +19,25 @@ struct JSONCity: Codable {
 }
 
 struct JSONWeatherData: Codable {
-    let dt:Int
-    
+    let dt_txt: String
+    let main: JSONMain
+    let weather: [JSONWeather]
+    let wind: JSONWind
+}
+
+struct JSONMain: Codable {
+    let temp: Double
+    let temp_min: Double
+    let temp_max: Double
+    let humidity: Int
+}
+
+struct JSONWeather: Codable {
+    let main: String
+    let icon: String
+}
+
+struct JSONWind: Codable {
+   let speed: Double
+    let deg : Double
 }
