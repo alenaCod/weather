@@ -11,9 +11,9 @@ import UIKit
 class ViewController: UIViewController {
     
     enum TypeWeather: String {
-        case rain = "rain"
-        case clouds = "clouds"
-        case clear = "clear"
+        case rain = "Rain"
+        case clouds = "Clouds"
+        case clear = "Clear"
     }
     
     fileprivate let cellIdentifier = "CellID"
@@ -83,8 +83,12 @@ class ViewController: UIViewController {
         weatherTemperature.text = _recentData.main.temp_max.toString()
 
         humidityLabel.text = _recentData.main.humidity.toString() + "%"
-        speedWind.text = Int(_recentData.wind.speed).toString() + "m/sec"
-        displayWeatherImage(type: (weatherData?[0].weather[0].main)!)
+        speedWind.text = Int(_recentData.wind.speed.rounded()).toString() + "m/sec"
+        
+        guard let _type = weatherData?[0].weather[0].main, _type != "" else {
+            return
+        }
+        displayWeatherImage(type:_type)
     }
     
     func displayWeatherImage (type: String){
@@ -92,14 +96,12 @@ class ViewController: UIViewController {
         print("type ++++++++ : \(type)")
         switch (type) {
             case TypeWeather.rain.rawValue:
-            weatherImage.image = UIImage(named: "ic_white_day_rain")
+            weatherImage.image = UIImage(named: "ic_white_day_bright")
             case TypeWeather.clouds.rawValue:
-            weatherImage.image = UIImage(named: "ic_white_day_rain")
-//            typeImage.image = UIImage(named: "ic_run")
-//        case Clear:
-//            typeImage.image = UIImage(named: "ic_walk")
-//        case 4:
-//            typeImage.image = UIImage(named: "ic_hill")
+            weatherImage.image = UIImage(named: "ic_white_day_cloudy")
+            case TypeWeather.clear.rawValue:
+            weatherImage.image = UIImage(named: "ic_white_day_bright")
+            //"ic_white_day_rain"
         default:
             break
         }
