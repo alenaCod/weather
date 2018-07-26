@@ -8,15 +8,18 @@
 
 import UIKit
 
+
+enum TypeWeather: String {
+    case rain = "Rain"
+    case clouds = "Clouds"
+    case clear = "Clear"
+}
+
 class ViewController: UIViewController {
     
-    enum TypeWeather: String {
-        case rain = "Rain"
-        case clouds = "Clouds"
-        case clear = "Clear"
-    }
-    
-    fileprivate let cellIdentifier = "CellID"
+    static let nibName = "WeatherCell"
+    static let cellIdentifier = "WeatherCellID"
+
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -31,11 +34,23 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var directionWindImage: UIImageView!
     
+    fileprivate var timeSelectedWeatherData: [JSONWeatherData] = [] {
+        didSet {
+            // collection reload data
+        }
+    }
+
+ 
+    fileprivate var dayWeatherData: [JSONWeatherData] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
-    private var weatherData: [JSONWeatherData]? {
+    fileprivate var weatherData: [JSONWeatherData] = [] {
         didSet {
             populateView()
-            //TODO: tableview reload()
+            filterDates()
         }
     }
     
@@ -67,51 +82,50 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        initTableView()
         updateData()
-        // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    private func filterDates() {
+       print("weatherData: ", weatherData.count)
+       dayWeatherData = weatherData.filter({$0.dt_txt.contains("03:00:00")})
+       print("dayWeatherData: ", dayWeatherData.count)
+    }
+    private func initTableView() {
+        let nib = UINib(nibName: ViewController.nibName, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: ViewController.cellIdentifier)
+        tableView.backgroundView = UIView(frame: .zero)
+        tableView.tableFooterView = UIView(frame: .zero)
+    }
+    
     
     private func populateView() {
         cityNameLabel.text = city?.name ?? ""
         
-        
-        guard let _weatherData = weatherData,_weatherData.count
-            > 0, let _recentData = _weatherData[0] as? JSONWeatherData else {
+        guard weatherData.count > 0, let _recentData = weatherData[0] as? JSONWeatherData else {
                 return
         }
+        
         dateLabel.text = _recentData.dt_txt
-        weatherTemperature.text = Util.calvineToCelsious(temp: _recentData.main)
+        weatherTemperature.text = Util.kelvinToСesium(temp: _recentData.main)
         humidityLabel.text = Util.percentHumidity(temp: _recentData.main)
-        //_recentData.main.humidity.toString() + "%"
         speedWind.text = Util.wind(temp: _recentData.wind)
-        //Int(_recentData.wind.speed.rounded()).toString() + "m/sec"
-        guard let _type = weatherData?[0].weather[0].main, _type != "" else {
-            return
-        }
-        displayWeatherImage(type:_type)
         
-        guard let _typeWind = weatherData?[0].wind.deg.toString(), _typeWind != "" else {
+        guard let _type = weatherData[0].weather[0].main as? String, _type != "" else {
             return
         }
+        weatherImage.image = Util.getWeatherImage(type:_type)
+        //displayWeatherImage(type:_type)
+        
+        guard let _typeWind = weatherData[0].wind.deg.toString() as? String, _typeWind != "" else {
+            return
+        }
+ 
         displayWindImage(typeWind: _typeWind.toDouble())
-        
     }
-    
-    func displayWeatherImage (type: String){
-        print("type ++++++++ : \(type)")
-        switch (type) {
-        case TypeWeather.rain.rawValue:
-            weatherImage.image = UIImage(named: "ic_white_day_rain")
-        case TypeWeather.clouds.rawValue:
-            weatherImage.image = UIImage(named: "ic_white_day_cloudy")
-        case TypeWeather.clear.rawValue:
-            weatherImage.image = UIImage(named: "ic_white_day_bright")
-        default:
-            break
-        }
-    }
-    
-    func displayWindImage(typeWind: Double){
+
+    func displayWindImage(typeWind: Double) {
         print("typeWind ====== : \(typeWind)")
         switch (typeWind) {
         case 0.0...22.0, 338.0...360.0:
@@ -146,9 +160,7 @@ class ViewController: UIViewController {
             }
         })
     }
-    
-    
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -158,30 +170,27 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! WeatherCell
-        cell.selectionStyle = .none
+        let cell = tableView.dequeueReusableCell(withIdentifier: ViewController.cellIdentifier) as! WeatherCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         
-        
+        cell.configureCell(forWeather: dayWeatherData[indexPath.row])
         return cell
     }
     
-    //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    //
-    //    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dayWeatherData.count
+    }
+    
 }
 
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 92
     }
     
 }

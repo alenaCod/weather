@@ -7,10 +7,10 @@
 //
 
 import Foundation
-
+import UIKit
 
 class Util {
-    class func calvineToCelsious(temp: JSONMain) -> String {
+    class func kelvinToСesium(temp: JSONMain) -> String {
         let res = Int((temp.temp_max - 273.15).rounded()).toString() + "°" + "/" + Int((temp.temp_min - 273.15).rounded()).toString() + "°"
         return res
     }
@@ -21,8 +21,20 @@ class Util {
     }
     
     class func wind (temp:JSONWind) -> String {
-       let res =  Int(temp.speed.rounded()).toString() + "m/sec"
-        //let res = temp.humidity.toString() + "%"
+       let res = Int(temp.speed.rounded()).toString() + "m/sec"
         return res
+    }
+    
+    class func getWeatherImage(type: String) -> UIImage? {
+        switch (type) {
+            case TypeWeather.rain.rawValue:
+                return UIImage(named: "ic_white_day_rain")
+            case TypeWeather.clouds.rawValue:
+                return  UIImage(named: "ic_white_day_cloudy")
+            case TypeWeather.clear.rawValue:
+                return UIImage(named: "ic_white_day_bright")
+            default:
+                return nil
+        }
     }
 }
