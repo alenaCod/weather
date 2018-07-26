@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ic_wind.pdf",
+      "filename" : "wind.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "wind@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "wind@3x.png",
       "scale" : "3x"
     }
   ],

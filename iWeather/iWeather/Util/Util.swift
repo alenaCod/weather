@@ -37,4 +37,17 @@ class Util {
                 return nil
         }
     }
+    
+    class func getWeatherImageBlack(type: String) -> UIImage? {
+        switch (type) {
+        case TypeWeather.rain.rawValue:
+            return UIImage(named: "ic_white_day_rain_black")
+        case TypeWeather.clouds.rawValue:
+            return  UIImage(named: "ic_white_day_cloudy_black")
+        case TypeWeather.clear.rawValue:
+            return UIImage(named: "ic_white_day_bright_black")
+        default:
+            return nil
+        }
+    }
 }

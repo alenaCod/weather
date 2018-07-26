@@ -106,8 +106,10 @@ class ViewController: UIViewController {
         guard weatherData.count > 0, let _recentData = weatherData[0] as? JSONWeatherData else {
                 return
         }
-        
         dateLabel.text = _recentData.dt_txt
+      
+//        print("labelText:\(dateLabel.text)")
+        
         weatherTemperature.text = Util.kelvinToСesium(temp: _recentData.main)
         humidityLabel.text = Util.percentHumidity(temp: _recentData.main)
         speedWind.text = Util.wind(temp: _recentData.wind)
@@ -190,7 +192,8 @@ extension ViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 92
+        return 80
+        
     }
     
 }

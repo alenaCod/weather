@@ -30,20 +30,19 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27/19" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zG7-vE-9M9">
-                        <rect key="frame" x="74" y="35.5" width="164" height="21"/>
+                        <rect key="frame" x="74" y="32.5" width="184" height="27"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="FOC-VE-BeR"/>
+                            <constraint firstAttribute="height" constant="27" id="FOC-VE-BeR"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_white_day_rain" translatesAutoresizingMaskIntoConstraints="NO" id="FEZ-Pi-FuE">
-                        <rect key="frame" x="246" y="17" width="60" height="60"/>
-                        <color key="backgroundColor" red="0.35294117650000001" green="0.62352941179999999" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <rect key="frame" x="266" y="27" width="40" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="60" id="OKu-VM-BpQ"/>
-                            <constraint firstAttribute="height" constant="60" id="fJZ-GD-Ezh"/>
+                            <constraint firstAttribute="width" constant="40" id="OKu-VM-BpQ"/>
+                            <constraint firstAttribute="height" constant="40" id="fJZ-GD-Ezh"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -67,6 +66,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_white_day_rain" width="36" height="36"/>
+        <image name="ic_white_day_rain" width="50" height="50"/>
     </resources>
 </document>

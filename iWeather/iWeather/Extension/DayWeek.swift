@@ -16,3 +16,12 @@ extension Date {
         // or use capitalized(with: locale) if you want
     }
 }
+
+extension Date {
+    func dayOfWeekWithDayMonth() -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E,d MMM"
+        return dateFormatter.string(from: self).capitalized
+        // or use capitalized(with: locale) if you want
+}
+}

@@ -29,12 +29,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRP-tG-CrI">
-                                        <rect key="frame" x="19" y="21" width="25" height="30"/>
+                                        <rect key="frame" x="19" y="21" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title=" " image="ic_place"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgo-VW-LuT">
-                                        <rect key="frame" x="330" y="25" width="27" height="22"/>
+                                        <rect key="frame" x="316" y="11" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title=" " image="ic_my_location"/>
                                     </button>
@@ -69,54 +69,57 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="thH-d4-sXD">
                                 <rect key="frame" x="0.0" y="98" width="375" height="151"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_white_day_cloudy" translatesAutoresizingMaskIntoConstraints="NO" id="x32-GZ-2tN">
-                                        <rect key="frame" x="16" y="10.5" width="130" height="130"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_white_day_bright" translatesAutoresizingMaskIntoConstraints="NO" id="x32-GZ-2tN">
+                                        <rect key="frame" x="20" y="10.5" width="130" height="130"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="130" id="LgH-A5-vmj"/>
                                             <constraint firstAttribute="width" constant="130" id="q5V-rf-Z34"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_temp" translatesAutoresizingMaskIntoConstraints="NO" id="nUM-on-Ckg">
-                                        <rect key="frame" x="226" y="31" width="19" height="20"/>
+                                        <rect key="frame" x="226" y="31" width="19" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="19" id="IDl-tW-ill"/>
+                                            <constraint firstAttribute="width" constant="19" id="pCv-O5-GAo"/>
+                                        </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_humidity" translatesAutoresizingMaskIntoConstraints="NO" id="GXC-st-w2a">
-                                        <rect key="frame" x="229" y="66" width="16" height="19"/>
+                                        <rect key="frame" x="226" y="66" width="19" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19" id="lpM-CC-EXm"/>
+                                            <constraint firstAttribute="width" constant="19" id="sb7-Lj-wd7"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_wind" translatesAutoresizingMaskIntoConstraints="NO" id="3yc-bf-QaA">
-                                        <rect key="frame" x="228" y="101" width="17" height="19"/>
+                                        <rect key="frame" x="226" y="101" width="19" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="19" id="CgT-ak-pGN"/>
+                                            <constraint firstAttribute="width" constant="19" id="SPM-Yu-L91"/>
+                                        </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="70%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hd-2N-loj">
-                                        <rect key="frame" x="253" y="65" width="106" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="106" id="BbA-pK-u3N"/>
-                                        </constraints>
+                                        <rect key="frame" x="253" y="65" width="102" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15m/sec" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rK-Z5-jsK">
-                                        <rect key="frame" x="253" y="99" width="71" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="71" id="GWb-PA-5X4"/>
-                                        </constraints>
+                                        <rect key="frame" x="253" y="99" width="78" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18/18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Amg-RC-tDF">
-                                        <rect key="frame" x="253" y="30" width="106" height="21"/>
+                                        <rect key="frame" x="253" y="30" width="102" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wind_e" translatesAutoresizingMaskIntoConstraints="NO" id="JZA-fr-Jac">
-                                        <rect key="frame" x="325" y="94" width="34" height="34"/>
+                                        <rect key="frame" x="339" y="102" width="16" height="16"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="34" id="ZIk-1x-bfi"/>
-                                            <constraint firstAttribute="height" constant="34" id="bhl-DN-Jel"/>
+                                            <constraint firstAttribute="width" constant="16" id="ZIk-1x-bfi"/>
+                                            <constraint firstAttribute="height" constant="16" id="bhl-DN-Jel"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -124,25 +127,25 @@
                                 <constraints>
                                     <constraint firstItem="5hd-2N-loj" firstAttribute="leading" secondItem="5rK-Z5-jsK" secondAttribute="leading" id="5JI-EB-Uil"/>
                                     <constraint firstItem="3yc-bf-QaA" firstAttribute="top" secondItem="GXC-st-w2a" secondAttribute="bottom" constant="16" id="5Ux-co-0t2"/>
-                                    <constraint firstAttribute="trailing" secondItem="Amg-RC-tDF" secondAttribute="trailing" constant="16" id="5nE-0t-Gcb"/>
-                                    <constraint firstItem="5hd-2N-loj" firstAttribute="leading" secondItem="Amg-RC-tDF" secondAttribute="leading" id="8Wv-Bb-9W8"/>
-                                    <constraint firstItem="3yc-bf-QaA" firstAttribute="leading" secondItem="x32-GZ-2tN" secondAttribute="trailing" constant="82" id="HER-Ju-Jn0"/>
+                                    <constraint firstAttribute="trailing" secondItem="Amg-RC-tDF" secondAttribute="trailing" constant="20" id="5nE-0t-Gcb"/>
+                                    <constraint firstItem="3yc-bf-QaA" firstAttribute="leading" secondItem="x32-GZ-2tN" secondAttribute="trailing" constant="76" id="HER-Ju-Jn0"/>
                                     <constraint firstItem="x32-GZ-2tN" firstAttribute="centerY" secondItem="thH-d4-sXD" secondAttribute="centerY" id="OCj-EV-gx4"/>
                                     <constraint firstAttribute="height" constant="151" id="S8y-J1-6Gt"/>
-                                    <constraint firstItem="x32-GZ-2tN" firstAttribute="leading" secondItem="thH-d4-sXD" secondAttribute="leading" constant="16" id="Sz2-cf-sxZ"/>
-                                    <constraint firstItem="nUM-on-Ckg" firstAttribute="leading" secondItem="x32-GZ-2tN" secondAttribute="trailing" constant="80" id="UM5-8C-Xje"/>
-                                    <constraint firstItem="JZA-fr-Jac" firstAttribute="top" secondItem="5hd-2N-loj" secondAttribute="bottom" constant="8" id="Wl8-Se-lgk"/>
+                                    <constraint firstItem="x32-GZ-2tN" firstAttribute="leading" secondItem="thH-d4-sXD" secondAttribute="leading" constant="20" id="Sz2-cf-sxZ"/>
+                                    <constraint firstItem="nUM-on-Ckg" firstAttribute="leading" secondItem="x32-GZ-2tN" secondAttribute="trailing" constant="76" id="UM5-8C-Xje"/>
+                                    <constraint firstItem="JZA-fr-Jac" firstAttribute="top" secondItem="5hd-2N-loj" secondAttribute="bottom" constant="16" id="Wl8-Se-lgk"/>
+                                    <constraint firstItem="GXC-st-w2a" firstAttribute="leading" secondItem="x32-GZ-2tN" secondAttribute="trailing" constant="76" id="X1L-Ji-pTw"/>
                                     <constraint firstItem="5hd-2N-loj" firstAttribute="top" secondItem="Amg-RC-tDF" secondAttribute="bottom" constant="14" id="Y1j-fZ-r3I"/>
-                                    <constraint firstItem="GXC-st-w2a" firstAttribute="top" secondItem="nUM-on-Ckg" secondAttribute="bottom" constant="15" id="Yir-vy-39P"/>
-                                    <constraint firstItem="5hd-2N-loj" firstAttribute="leading" secondItem="GXC-st-w2a" secondAttribute="trailing" constant="8" id="ZDf-Wp-ctp"/>
+                                    <constraint firstItem="GXC-st-w2a" firstAttribute="top" secondItem="nUM-on-Ckg" secondAttribute="bottom" constant="16" id="Yir-vy-39P"/>
+                                    <constraint firstItem="5hd-2N-loj" firstAttribute="leading" secondItem="GXC-st-w2a" secondAttribute="trailing" constant="8" id="b4o-wp-yS5"/>
                                     <constraint firstItem="5hd-2N-loj" firstAttribute="centerY" secondItem="thH-d4-sXD" secondAttribute="centerY" id="dUp-g0-W5R"/>
-                                    <constraint firstAttribute="trailing" secondItem="JZA-fr-Jac" secondAttribute="trailing" constant="16" id="dqp-UJ-KHz"/>
+                                    <constraint firstAttribute="trailing" secondItem="JZA-fr-Jac" secondAttribute="trailing" constant="20" id="dqp-UJ-KHz"/>
                                     <constraint firstItem="5rK-Z5-jsK" firstAttribute="leading" secondItem="3yc-bf-QaA" secondAttribute="trailing" constant="8" id="eB7-HX-UpM"/>
-                                    <constraint firstItem="Amg-RC-tDF" firstAttribute="leading" secondItem="nUM-on-Ckg" secondAttribute="trailing" constant="8" id="g8d-5O-yPx"/>
                                     <constraint firstItem="5rK-Z5-jsK" firstAttribute="top" secondItem="5hd-2N-loj" secondAttribute="bottom" constant="13" id="gN7-ff-uho"/>
-                                    <constraint firstAttribute="trailing" secondItem="5hd-2N-loj" secondAttribute="trailing" constant="16" id="nV2-Bb-h0g"/>
+                                    <constraint firstAttribute="trailing" secondItem="5hd-2N-loj" secondAttribute="trailing" constant="20" id="nV2-Bb-h0g"/>
+                                    <constraint firstItem="Amg-RC-tDF" firstAttribute="leading" secondItem="nUM-on-Ckg" secondAttribute="trailing" constant="8" id="pfX-jA-Ksr"/>
                                     <constraint firstItem="GXC-st-w2a" firstAttribute="centerY" secondItem="thH-d4-sXD" secondAttribute="centerY" id="rzc-vx-0E9"/>
-                                    <constraint firstItem="JZA-fr-Jac" firstAttribute="leading" secondItem="5rK-Z5-jsK" secondAttribute="trailing" constant="1" id="yr4-O7-XrM"/>
+                                    <constraint firstItem="JZA-fr-Jac" firstAttribute="leading" secondItem="5rK-Z5-jsK" secondAttribute="trailing" constant="8" id="yr4-O7-XrM"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -190,12 +193,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_humidity" width="16" height="20"/>
-        <image name="ic_my_location" width="22" height="22"/>
-        <image name="ic_place" width="20" height="30"/>
-        <image name="ic_temp" width="10" height="20"/>
-        <image name="ic_white_day_cloudy" width="36" height="36"/>
-        <image name="ic_wind" width="17" height="19"/>
-        <image name="icon_wind_e" width="34" height="34"/>
+        <image name="ic_humidity" width="50" height="50"/>
+        <image name="ic_my_location" width="50" height="50"/>
+        <image name="ic_place" width="50" height="50"/>
+        <image name="ic_temp" width="50" height="50"/>
+        <image name="ic_white_day_bright" width="109" height="109"/>
+        <image name="ic_wind" width="50" height="50"/>
+        <image name="icon_wind_e" width="50" height="50"/>
     </resources>
 </document>
