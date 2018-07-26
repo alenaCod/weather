@@ -14,6 +14,10 @@ class Util {
         let res = Int((temp.temp_max - 273.15).rounded()).toString() + "°" + "/" + Int((temp.temp_min - 273.15).rounded()).toString() + "°"
         return res
     }
+    class func kelvinToСesiumTempMax(temp: JSONMain) -> String {
+        let res = Int((temp.temp_max - 273.15).rounded()).toString() + "°"
+        return res
+    }
     
     class func percentHumidity (temp:JSONMain) -> String {
       let res = temp.humidity.toString() + "%"

@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var weatherTemperature: UILabel!
     
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
     
@@ -51,6 +52,7 @@ class ViewController: UIViewController {
         didSet {
             populateView()
             filterDates()
+            collectionView.reloadData()
         }
     }
     
@@ -195,5 +197,25 @@ extension ViewController: UITableViewDelegate {
         return 80
         
     }
+    
+}
+
+extension ViewController: UICollectionViewDelegate {
+    
+}
+
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCollectionViewCell", for: indexPath) as! WeatherCollectionViewCell
+        cell.configure(forWeather: weatherData[indexPath.row])
+        return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return weatherData.count
+    }
+    
+    
     
 }
