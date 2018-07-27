@@ -37,6 +37,7 @@ class ViewController: UIViewController {
     
     fileprivate var timeSelectedWeatherData: [JSONWeatherData] = [] {
         didSet {
+            collectionView.reloadData()
             // collection reload data
         }
     }
@@ -52,7 +53,7 @@ class ViewController: UIViewController {
         didSet {
             populateView()
             filterDates()
-            collectionView.reloadData()
+            //collectionView.reloadData()
         }
     }
     
@@ -91,9 +92,68 @@ class ViewController: UIViewController {
     
     private func filterDates() {
        print("weatherData: ", weatherData.count)
+        
+//        let now = Date()
+//        let soon = NSDate(timeIntervalSince1970: 1532746800) as Date
+//        let later = NSDate(timeIntervalSince1970: 1532736000) as Date //1532736000
+//
+//        let range = now...later
+//
+//        if range.contains(soon) {
+//            print("The date is inside the range")
+//        } else {
+//            print("The date is outside the range")
+//        }
+//
+//        var tmp = [JSONWeatherData]()
+//        for w in weatherData {
+//            print("data___: ", w.dt_txt)
+//            if w.dt_txt.contains("21:00:00") {
+//                 let isInToday = DateUtil.dtToDate(dt: w.dt - 1).isInToday
+//                 print("isToday___: ", isInToday)
+//
+//                if(isInToday) {
+//                    tmp.append(w)
+//                }
+//
+//            } else {
+//                let isInToday = DateUtil.dtToDate(dt: w.dt).isInToday
+//                print("isToday___: ", isInToday)
+//                if(isInToday) {
+//                    tmp.append(w)
+//                }
+//            }
+//        }
+//
+//        timeSelectedWeatherData = tmp
+        
        dayWeatherData = weatherData.filter({$0.dt_txt.contains("03:00:00")})
        print("dayWeatherData: ", dayWeatherData.count)
+
+//        guard let _txtDate = weatherData[0].dt_txt as? String, weatherData.count > 0 else {
+//            return
+//        }
+//
+//        print("stringToDate: ", DateUtil.stringToDate(strDate: _txtDate))
+//        print("isToday: ", DateUtil.stringToDate(strDate: _txtDate)?.isToday())
+        
+        print("timeSelectedWeatherData: ", timeSelectedWeatherData.count)
+        timeSelectedWeatherData = weatherData.filter({
+            (date) in {
+                if date.dt_txt.contains("21:00:00") {
+                   return DateUtil.dtToDate(dt: date.dt - 1).isInToday
+                }
+             return DateUtil.dtToDate(dt: date.dt).isInToday
+            }()
+            })
+        print("timeSelectedWeatherData: ", timeSelectedWeatherData.count)
+        
+       // timeSelectedWeatherData = timeWeatherData.sorted(by: {$0.dt < $1.dt})
+        for w in timeSelectedWeatherData {
+            print("data___: ", w.dt_txt)
+        }
     }
+    
     private func initTableView() {
         let nib = UINib(nibName: ViewController.nibName, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: ViewController.cellIdentifier)
@@ -108,7 +168,7 @@ class ViewController: UIViewController {
         guard weatherData.count > 0, let _recentData = weatherData[0] as? JSONWeatherData else {
                 return
         }
-        dateLabel.text = _recentData.dt_txt
+        dateLabel.text = DateUtil.dtToDate(dt: _recentData.dt).dateOfWeekAndMonth()
       
 //        print("labelText:\(dateLabel.text)")
         
@@ -126,32 +186,9 @@ class ViewController: UIViewController {
             return
         }
  
-        displayWindImage(typeWind: _typeWind.toDouble())
+      directionWindImage.image = Util.getWindImage(typeWind: _typeWind.toDouble())
     }
 
-    func displayWindImage(typeWind: Double) {
-        print("typeWind ====== : \(typeWind)")
-        switch (typeWind) {
-        case 0.0...22.0, 338.0...360.0:
-            directionWindImage.image = UIImage(named: "icon_wind_n")
-        case 23.0...67.0:
-            directionWindImage.image = UIImage(named: "icon_wind_ne")
-        case 68.0...112.0:
-            directionWindImage.image = UIImage(named: "icon_wind_e")
-        case 113.0...157.0:
-            directionWindImage.image = UIImage(named: "icon_wind_se")
-        case 158.0...202.0:
-            directionWindImage.image = UIImage(named: "icon_wind_s")
-        case 203.0...246.0:
-            directionWindImage.image = UIImage(named: "icon_wind_sw")
-        case 247.0...292.0:
-            directionWindImage.image = UIImage(named: "icon_wind_w")
-        case 293.0...237.0:
-            directionWindImage.image = UIImage(named: "icon_wind_nw")
-        default: break
-            
-        }
-    }
     
     private func updateData(term: String = "") {
         APIService.sharedInstance.getWeather(searchText: term, comletion: { [weak self] result in
@@ -194,7 +231,7 @@ extension ViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 72
         
     }
     
@@ -207,15 +244,12 @@ extension ViewController: UICollectionViewDelegate {
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCollectionViewCell", for: indexPath) as! WeatherCollectionViewCell
-        cell.configure(forWeather: weatherData[indexPath.row])
+        cell.configure(forWeather: timeSelectedWeatherData[indexPath.row])
         return cell
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return weatherData.count
+        return timeSelectedWeatherData.count
     }
-    
-    
-    
 }

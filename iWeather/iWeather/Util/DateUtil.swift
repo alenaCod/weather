@@ -9,15 +9,19 @@
 import Foundation
 
 class DateUtil {
-    class func stringToDate(strDate: String?) -> Date? {
-        guard let _strDate = strDate else {
-            return nil
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-        //dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
-        let date = dateFormatter.date(from: _strDate)
-        return date
+//    class func stringToDate(strDate: String?) -> Date? {
+//        guard let _strDate = strDate else {
+//            return nil
+//        }
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+//        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+//        let date = dateFormatter.date(from: _strDate)
+//        return date
+//    }
+    
+    class func dtToDate(dt: Double) -> Date {
+        return NSDate(timeIntervalSince1970: dt) as Date
     }
     
     class func getDayOfWeek(_ strDate: String) -> Int? {
@@ -28,4 +32,6 @@ class DateUtil {
         let weekDay = myCalendar.component(.weekday, from: date)
         return weekDay
     }
+    
 }
+

@@ -20,6 +20,7 @@ struct JSONCity: Codable {
 
 struct JSONWeatherData: Codable {
     let dt_txt: String
+    let dt: Double
     let main: JSONMain
     let weather: [JSONWeather]
     let wind: JSONWind

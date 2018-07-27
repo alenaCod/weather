@@ -24,7 +24,8 @@ class WeatherCell: UITableViewCell {
 
    func configureCell(forWeather weather : JSONWeatherData){
 //    dayWeek.text = weather.dt_txt + " - " + (DateUtil.getDayOfWeek(weather.dt_txt)?.toString())!
-    dayWeek.text = DateUtil.stringToDate(strDate: weather.dt_txt)?.dayOfWeek()
+//    dayWeek.text = DateUtil.stringToDate(strDate: weather.dt_txt)?.dayOfWeek()
+     dayWeek.text = DateUtil.dtToDate(dt: weather.dt).dayOfWeek()
     temperatureLabel.text = Util.kelvinToСesium(temp: weather.main)
     cloudImage.image = Util.getWeatherImageBlack(type: weather.weather[0].main)
    // print("image ===:\(Util.getWeatherImage(type: weather.weather[0].main))")
