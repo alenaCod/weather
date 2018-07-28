@@ -21,19 +21,6 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         //let t = s[1].split(separator: ":")
         timeLable.text = String(t[0]) + ":" + String(t[1]) //.time()
          print("label:\(timeLable.text)")
-        print("label:\(tempLable.text)")
-        
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "h:mm a"
-//
-//        let date = dateFormatter.date(from: weather.dt_txt)
-//        dateFormatter.dateFormat = "HH:mm"
-//
-//        let Date24 = dateFormatter.string(from: date!)
-//        let d = DateUtil.stringToDate(strDate: weather.dt_txt)?.twelvHours()
-//        let dateFormatter = DateFormatter()
-//         dateFormatter.dateFormat = "HH:mm"
-//        let date = dateFormatter.date(from: d!)
-//        timeLable.text = date?.twentyFour()
+        //print("label:\(tempLable.text)")
     }
 }

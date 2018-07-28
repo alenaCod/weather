@@ -14,8 +14,18 @@ class Util {
         let res = Int((temp.temp_max - 273.15).rounded()).toString() + "°" + "/" + Int((temp.temp_min - 273.15).rounded()).toString() + "°"
         return res
     }
+    
+    class func kelvinToСesiumMaxMin(tempMax: Double, tempMin:Double) -> String {
+        let res = Int((tempMax - 273.15).rounded()).toString() + "°" + "/" + Int((tempMin - 273.15).rounded()).toString() + "°"
+        return res
+    }
+    
     class func kelvinToСesiumTempMax(temp: JSONMain) -> String {
         let res = Int((temp.temp_max - 273.15).rounded()).toString() + "°"
+        return res
+    }
+    class func kelvinToСesiumTemp(temp: Double) -> String {
+        let res = Int((temp  -  273.15).rounded()).toString() + "°"
         return res
     }
     
@@ -78,4 +88,5 @@ class Util {
             return nil
         }
     }
+    
 }

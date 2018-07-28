@@ -113,7 +113,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title=" " image="ic_my_location"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8WG-z0-6zb">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8WG-z0-6zb">
                                         <rect key="frame" x="52" y="25" width="145" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -223,12 +223,24 @@
                                     <constraint firstItem="JZA-fr-Jac" firstAttribute="leading" secondItem="5rK-Z5-jsK" secondAttribute="trailing" constant="8" id="yr4-O7-XrM"/>
                                 </constraints>
                             </view>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRf-ga-KR4">
+                                <rect key="frame" x="0.0" y="487" width="375" height="180"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="pqm-qm-Al6"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="iuL-8D-8ni"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="KJX-bN-It5"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="G5d-X0-6u3" firstAttribute="top" secondItem="N04-hb-MqB" secondAttribute="bottom" constant="147" id="2yH-c7-Gqa"/>
                             <constraint firstItem="thH-d4-sXD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="AqK-8c-9l7"/>
                             <constraint firstItem="G5d-X0-6u3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Jn8-OH-Yhk"/>
+                            <constraint firstItem="NRf-ga-KR4" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="LQs-RC-oNI"/>
                             <constraint firstItem="thH-d4-sXD" firstAttribute="top" secondItem="N04-hb-MqB" secondAttribute="bottom" id="LRI-oL-5hg"/>
                             <constraint firstItem="Bsb-i3-F4l" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OVD-Kz-1IG"/>
                             <constraint firstItem="N04-hb-MqB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="QaO-KQ-VwE"/>
@@ -239,6 +251,7 @@
                             <constraint firstItem="N04-hb-MqB" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bg4-9z-pyB"/>
                             <constraint firstItem="Bsb-i3-F4l" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cEu-UW-Yi4"/>
                             <constraint firstItem="N04-hb-MqB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="cSz-SX-EA2"/>
+                            <constraint firstItem="NRf-ga-KR4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hdb-Jd-VUk"/>
                             <constraint firstItem="thH-d4-sXD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lGQ-ec-uYI"/>
                             <constraint firstAttribute="bottom" secondItem="Bsb-i3-F4l" secondAttribute="bottom" id="lv4-g8-1De"/>
                             <constraint firstItem="G5d-X0-6u3" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nr1-8G-8qN"/>
@@ -246,17 +259,18 @@
                             <constraint firstItem="N04-hb-MqB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tQX-Tc-lWu"/>
                             <constraint firstItem="thH-d4-sXD" firstAttribute="top" secondItem="N04-hb-MqB" secondAttribute="bottom" id="x7B-iU-tHL"/>
                             <constraint firstItem="Bsb-i3-F4l" firstAttribute="top" secondItem="thH-d4-sXD" secondAttribute="bottom" constant="119" id="xsF-w5-LxT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NRf-ga-KR4" secondAttribute="bottom" id="yLF-AZ-RwK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="cityNameLabel" destination="8WG-z0-6zb" id="rHP-W5-6xL"/>
                         <outlet property="collectionView" destination="zka-bd-WhN" id="Kwq-cH-k91"/>
                         <outlet property="dateLabel" destination="uR3-lh-Z7d" id="7H0-eG-rea"/>
                         <outlet property="directionWindImage" destination="JZA-fr-Jac" id="m8g-eu-apn"/>
                         <outlet property="humidityLabel" destination="5hd-2N-loj" id="Z2t-Ur-F4d"/>
+                        <outlet property="pickerView" destination="NRf-ga-KR4" id="UDl-la-Izl"/>
                         <outlet property="speedWind" destination="5rK-Z5-jsK" id="r6F-7C-dlL"/>
                         <outlet property="tableView" destination="Bsb-i3-F4l" id="3tz-hG-P2y"/>
                         <outlet property="weatherImage" destination="x32-GZ-2tN" id="hwj-NT-io3"/>
