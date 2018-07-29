@@ -11,11 +11,11 @@
 		B3372A6B210777D70017701D /* JSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3372A6A210777D70017701D /* JSONResponse.swift */; };
 		B3667AE9210BFDD500FD4CEC /* ParseUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3667AE8210BFDD500FD4CEC /* ParseUtil.swift */; };
 		B3667AEB210BFEDD00FD4CEC /* JSONCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3667AEA210BFEDD00FD4CEC /* JSONCities.swift */; };
-		B36EBC96210E834A0041DC81 /* city.list.json in Resources */ = {isa = PBXBuildFile; fileRef = B36EBC95210E83490041DC81 /* city.list.json */; };
 		B382067C210E47EF00A8B874 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B382067B210E47EF00A8B874 /* LocationsViewController.swift */; };
 		B382067F210E486000A8B874 /* AutoCompleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B382067E210E486000A8B874 /* AutoCompleteCell.swift */; };
 		B3820681210E487200A8B874 /* AutoCompleteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3820680210E487200A8B874 /* AutoCompleteCell.xib */; };
 		B3820683210E4FAD00A8B874 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3820682210E4FAD00A8B874 /* UIColor + Extension.swift */; };
+		B387805B210E8972001734C7 /* city.list.json in Resources */ = {isa = PBXBuildFile; fileRef = B387805A210E8971001734C7 /* city.list.json */; };
 		B38BA1352107530B0068FC78 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38BA1342107530B0068FC78 /* APIService.swift */; };
 		B3BC8AF92107BFDB003454C8 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BC8AF82107BFDB003454C8 /* String + Extension.swift */; };
 		B3D826182107AFFF00693D17 /* Int + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D826172107AFFF00693D17 /* Int + Extension.swift */; };
@@ -41,11 +41,11 @@
 		B3372A6A210777D70017701D /* JSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONResponse.swift; sourceTree = "<group>"; };
 		B3667AE8210BFDD500FD4CEC /* ParseUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseUtil.swift; sourceTree = "<group>"; };
 		B3667AEA210BFEDD00FD4CEC /* JSONCities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCities.swift; sourceTree = "<group>"; };
-		B36EBC95210E83490041DC81 /* city.list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list.json; sourceTree = "<group>"; };
 		B382067B210E47EF00A8B874 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		B382067E210E486000A8B874 /* AutoCompleteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteCell.swift; sourceTree = "<group>"; };
 		B3820680210E487200A8B874 /* AutoCompleteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutoCompleteCell.xib; sourceTree = "<group>"; };
 		B3820682210E4FAD00A8B874 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		B387805A210E8971001734C7 /* city.list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list.json; sourceTree = "<group>"; };
 		B38BA1342107530B0068FC78 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		B3BC8AF82107BFDB003454C8 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		B3D826172107AFFF00693D17 /* Int + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extension.swift"; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 		B308A3A1210AA9DB0073B73F /* data */ = {
 			isa = PBXGroup;
 			children = (
-				B36EBC95210E83490041DC81 /* city.list.json */,
+				B387805A210E8971001734C7 /* city.list.json */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -295,7 +295,7 @@
 				B3E29FEC2105E47F00D7FAE1 /* LaunchScreen.storyboard in Resources */,
 				B3E29FE92105E47F00D7FAE1 /* Assets.xcassets in Resources */,
 				B3E29FE72105E47D00D7FAE1 /* Main.storyboard in Resources */,
-				B36EBC96210E834A0041DC81 /* city.list.json in Resources */,
+				B387805B210E8972001734C7 /* city.list.json in Resources */,
 				B3820681210E487200A8B874 /* AutoCompleteCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
