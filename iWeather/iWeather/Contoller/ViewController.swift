@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreLocation
 
 enum TypeWeather: String {
     case rain = "Rain"
@@ -38,6 +38,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var speedWind: UILabel!
     @IBOutlet weak var directionWindImage: UIImageView!
     
+    private var locationManager = CLLocationManager()
+    fileprivate var currentLocation: CLLocation?
+    
     // Initial data obtained from server
     fileprivate var weatherData: [JSONWeatherData] = [] {
         didSet {
@@ -51,16 +54,11 @@ class ViewController: UIViewController {
             guard let _selectedLocation = selectedLocation else {
                 return
             }
-            updateData(city: _selectedLocation)
+            updateData(location: _selectedLocation)
         }
     }
     
-    fileprivate var locations = [JSONLocation]() {
-        didSet {
-            //TODO: rabdom or define accordinf to current location name
-        }
-    }
-    
+    fileprivate var locations = [JSONLocation]()
     fileprivate var selectedWeatherData: DailyData? {
         didSet {
             guard let _selected = selectedWeatherData else {
@@ -91,13 +89,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupNotification()
+        startLocationUpdates()
+        
         loadLocations()
         initTableView()
         
         // load initial city
-        updateData(city: JSONLocation(name: "Zaporizhzhya", id: 687700))
+        //updateData(location: JSONLocation(name: "Zaporizhzhya", id: 687700))
     }
 
     private func loadLocations() {
@@ -108,10 +108,10 @@ class ViewController: UIViewController {
     
    
     
-    private func updateData(city: JSONLocation) {
-        cityNameLabel.text = city.name
+    private func updateData(location: JSONLocation) {
+        cityNameLabel.text = location.name
         
-        APIService.sharedInstance.getWeather(idCity: city.id, comletion: { [weak self] result in
+        APIService.sharedInstance.getWeather(idCity: location.id, comletion: { [weak self] result in
             
             if let _result = result as? JSONResponse {
                 self?.weatherData = _result.list
@@ -156,6 +156,14 @@ class ViewController: UIViewController {
         selectedWeatherData = dailyWeatherData[0]
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueLocations"{
+            if let locationsViewController = segue.destination as? LocationsViewController{
+                locationsViewController.parsedLocations = locations
+            }
+        }
+    }
+    
     private func populateView(selected: DailyData) {
         //TODO: find all array accroding to selected date
         
@@ -180,6 +188,9 @@ class ViewController: UIViewController {
     }
     
     func displayLocationsViewController() {
+        guard locations.count > 0 else {
+            return
+        }
         self.performSegue(withIdentifier: "segueLocations", sender: self)
     }
 
@@ -189,6 +200,41 @@ class ViewController: UIViewController {
             return
         }
         selectedLocation = _location
+    }
+    
+    func startLocationUpdates() {
+        
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        locationManager.distanceFilter = 5000.0
+        locationManager.pausesLocationUpdatesAutomatically = true
+        locationManager.activityType = .fitness
+        locationManager.allowsBackgroundLocationUpdates = false
+        locationManager.startUpdatingLocation()
+    }
+    
+    
+    func fetchCityAndCountry(location: CLLocation, completion: @escaping (_ city: String?, _ country:  String?, _ error: Error?) -> ()) {
+        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+            completion(placemarks?.first?.locality,
+                       placemarks?.first?.country,
+                       error)
+        }
+    }
+    
+    func searchForAutoDefinedLocation(cityName: String) {
+        guard locations.count > 0 else {
+            return
+        }
+        let location = locations.filter({ $0.name.lowercased().contains(cityName.lowercased())})
+        print("result: ", location)
+        
+        guard let _last = location.last else {
+            return
+        }
+        updateData(location: _last)
     }
     
     override func didReceiveMemoryWarning() {
@@ -239,6 +285,30 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedWeatherData?.value.count ?? 0
+    }
+}
+
+extension ViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // Perform location-based activity
+        
+        //let newLocation = locations.last
+        
+        guard let location = locations.last as? CLLocation else {
+            return
+        }
+
+        fetchCityAndCountry(location: location) { city, country, error in
+            guard let city = city, let country = country, error == nil else { return }
+            print(city + ", " + country)
+            print("latitude: ", location.coordinate.latitude)
+            print("longitude: ", location.coordinate.longitude)
+            
+            self.searchForAutoDefinedLocation(cityName: city)
+            //TODO: serch in parsed array
+        }
+
     }
 }
 

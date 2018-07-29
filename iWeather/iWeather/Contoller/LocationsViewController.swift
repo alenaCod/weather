@@ -21,11 +21,7 @@ class LocationsViewController: UIViewController {
     
     var selectedLocation: JSONLocation?
     
-    var parsedLocations: [JSONLocation] = [JSONLocation]() {
-        didSet {
-            filteredLocations = parsedLocations
-        }
-    }
+    var parsedLocations = [JSONLocation]()
     
     var filteredLocations: [JSONLocation] = [] {
         didSet {
@@ -57,8 +53,9 @@ class LocationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        filteredLocations = parsedLocations
         initTable()
-        loadLocations()
+        //loadLocations()
     }
     
     
