@@ -22,13 +22,10 @@ class ViewController: UIViewController {
     static let cellIdentifier = "WeatherCellID"
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var weatherImage: UIImageView!
-    
     @IBOutlet weak var weatherTemperature: UILabel!
-    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cityNameLabel: UILabel! {
         didSet {
@@ -37,16 +34,14 @@ class ViewController: UIViewController {
         }
     }
     @IBOutlet weak var humidityLabel: UILabel!
-    
     @IBOutlet weak var speedWind: UILabel!
-    
     @IBOutlet weak var directionWindImage: UIImageView!
     
     
     // Initial data obtained from server
     fileprivate var weatherData: [JSONWeatherData] = [] {
         didSet {
-            filterDates()
+            buildDailyWeatherData()
             initialSelectedData()
         }
     }
@@ -82,12 +77,6 @@ class ViewController: UIViewController {
         }
     }
 
-    private var city: JSONCity? {
-        didSet {
-            
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -95,7 +84,7 @@ class ViewController: UIViewController {
         initTableView()
         
         // load initial city
-        updateData(city: JSONCities(name: "Moscov", id: 524901))
+        updateData(city: JSONCities(name: "Zaporizhzhya", id: 687700))
     }
     
     private func loadCities() {
@@ -111,7 +100,6 @@ class ViewController: UIViewController {
             
             if let _result = result as? JSONResponse {
                 self?.weatherData = _result.list
-                self?.city = _result.city
             } else {
                 print("to do reset")
             }
@@ -125,8 +113,8 @@ class ViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: .zero)
     }
 
-    private func filterDates() {
-        var dic = [String: [JSONWeatherData]]() //[String: [JSONWeatherData]]() // Your required result
+    private func buildDailyWeatherData() {
+        var dic = [String: [JSONWeatherData]]()
         weatherData.forEach {
             let dateKey = DateUtil.dtToDate(dt: $0.dt).day()
             let filterArray = weatherData.filter { $0.dt_txt.contains(dateKey) }
@@ -153,26 +141,17 @@ class ViewController: UIViewController {
         }
         selectedWeatherData = dailyWeatherData[0]
     }
-    
-    private func getHourlyData() {
-        // enter date of all day
-//        guard let _selectedWeatherData = selectedWeatherData else {
-//            return
-//        }
-        
-//        guard let arr = _selectedWeatherData.dt_txt.split(separator: " ") as? [String.SubSequence], arr.count > 0 else {
-//            return
-//        }
-        //hourlyWeatherData = selectedWeatherData. //weatherData.filter({$0.dt_txt.contains(String(arr[0]))})
-    }
 
     private func populateView(selected: DailyData) {
         //TODO: find all array accroding to selected date
  
         dateLabel.text = DateUtil.stringToDate(dateString: selected.key)?.dateOfWeekAndMonth()
-
-        speedWind.text = Util.getAvgSpeed(data: selected.value).toString() + "m/sec"
+        speedWind.text = Util.getAvgSpeed(data: selected.value)
         //TODO:..... print avg data
+        weatherTemperature.text = Util.getMaxTemperatureInDay(data: selected.value) + "/" + Util.getMinTemperatureInDay(data: selected.value)
+        humidityLabel.text = Util.getAvgHumidity(data: selected.value)
+        let r = Util.getAvgDirectionWind(data: selected.value)
+        directionWindImage.image = Util.getWindImage(typeWind: r)
     }
     
     @objc func handleCityTap(sender: UITapGestureRecognizer? = nil) {
@@ -268,43 +247,7 @@ extension ViewController: UIPickerViewDelegate {
 }
 
 /*
- private func populateView(selected: JSONWeatherData) {
- //TODO: find all array accroding to selected date
- selectedWeatherData = selected
- 
- dateLabel.text = DateUtil.dtToDate(dt: selected.dt).dateOfWeekAndMonth()
- 
- //TODO: ....
- //  weatherTemperature.text = Util.kelvinToСesium(temp: selected.main)
- // humidityLabel.text = Util.percentHumidity(temp: selected.main)
- // averege speed
- 
- speedWind.text = Util.getAvgSpeed(data: hourlyWeatherData).toString() + "m/sec"
- 
- //all  max temp in day
- let temp = hourlyWeatherData.map({$0.main.temp_max})
- print("temp :", temp) // temp.max()
- //curret max temp
- let currentTempMax =  temp.max()
- let r = Util.kelvinToСesiumTemp(temp: (currentTempMax!))
- print("r :", r)
- // all min temp in day
- let tMin = hourlyWeatherData.map({$0.main.temp_min})
- print("temp :", temp) // temp.max()
- // current min temp
- let currentTempMin =  tMin.min()
- 
- weatherTemperature.text = Util.kelvinToСesiumMaxMin(tempMax: currentTempMax!, tempMin: currentTempMin!)
- // all humidityes in day
- 
- let humiditys = hourlyWeatherData.map({$0.main.humidity})
- print("hum :", humiditys)
- let totalHumiditys = humiditys.reduce(0, +)
- print("totalH :", totalHumiditys)
- let avgHumidity = totalHumiditys / (hourlyWeatherData.count)
- print("avgHumidity :",avgHumidity)
- humidityLabel.text = avgHumidity.toString() + "%"
- 
+
  guard let _type = selected.weather[0].main as? String, _type != "" else {
  return
  }
@@ -312,29 +255,5 @@ extension ViewController: UIPickerViewDelegate {
  
  guard let _typeWind = selected.wind.deg.toString() as? String, _typeWind != "" else {
  return
- }
- 
- directionWindImage.image = Util.getWindImage(typeWind: _typeWind.toDouble())
- }
- */
-
-/*
- var dic = [String:[JSONWeatherData]]() // Your required result
- weatherData.forEach {
- if let arr = $0.dt_txt.split(separator: " ") as? [String.SubSequence], arr.count > 0 {
- let dateKey = String(arr[0])
- let filterArray = weatherData.filter { $0.dt_txt.contains(dateKey) }
- dic[dateKey] = filterArray
- }
- }
- print("dic: ", dic.count)
- let sorted = dic.sorted(by: { $0.0 < $1.0})
- for (key, value) in sorted {
- print("=== ")
- print("key: ", key)
- 
- for v in value {
- print("value: ", v.dt_txt)
- }
  }
  */

@@ -1,20 +1,164 @@
-[
+ [
   {
-    "id": 707860,
-    "name": "Hurzuf",
+    "id": 699967,
+    "name": "Nizhnyanka",
     "country": "UA",
     "coord": {
-      "lon": 34.283333,
-      "lat": 44.549999
+      "lon": 35.916672,
+      "lat": 48.666672
     }
   },
   {
-    "id": 519188,
-    "name": "Novinki",
-    "country": "RU",
+    "id": 700754,
+    "name": "Morozovskiy",
+    "country": "UA",
     "coord": {
-      "lon": 37.666668,
-      "lat": 55.683334
+      "lon": 35.916672,
+      "lat": 48.650002
     }
-  }
-]
+  },
+  {
+    "id": 689997,
+    "name": "Verbki",
+    "country": "UA",
+    "coord": {
+      "lon": 35.900002,
+      "lat": 48.583328
+    }
+  },
+  {
+    "id": 690367,
+    "name": "Vasil’yevka",
+    "country": "UA",
+    "coord": {
+      "lon": 35.5,
+      "lat": 48.033329
+    }
+  },
+  {
+    "id": 687363,
+    "name": "Zelënyy",
+    "country": "UA",
+    "coord": {
+      "lon": 35.5,
+      "lat": 47.966671
+    }
+  },
+  {
+    "id": 700201,
+    "name": "Nikiforovskiy",
+    "country": "UA",
+    "coord": {
+      "lon": 35.366669,
+      "lat": 47.916672
+    }
+  },
+  {
+    "id": 690777,
+    "name": "Ukrainka",
+    "country": "UA",
+    "coord": {
+      "lon": 35.349998,
+      "lat": 47.916672
+    }
+  },
+  {
+    "id": 707356,
+    "name": "Ivanovskiy",
+    "country": "UA",
+    "coord": {
+      "lon": 35.366669,
+      "lat": 47.883331
+    }
+  },
+  {
+    "id": 687700,
+    "name": "Zaporizhzhya",
+    "country": "UA",
+    "coord": {
+      "lon": 35.183331,
+      "lat": 47.816669
+    }
+  },
+  {
+    "id": 702072,
+    "name": "Malokaterynivka",
+    "country": "UA",
+    "coord": {
+      "lon": 35.253891,
+      "lat": 47.6525
+    }
+  },
+  {
+    "id": 696278,
+    "name": "Prymors’ke",
+    "country": "UA",
+    "coord": {
+      "lon": 35.285,
+      "lat": 47.617779
+    }
+  },
+  {
+    "id": 712615,
+    "name": "Belitskiy",
+    "country": "UA",
+    "coord": {
+      "lon": 35.299999,
+      "lat": 47.583328
+    }
+  },
+  {
+    "id": 689845,
+    "name": "Verkhnya Krynytsya",
+    "country": "UA",
+    "coord": {
+      "lon": 35.279999,
+      "lat": 47.491669
+    }
+  },
+  {
+    "id": 690380,
+    "name": "Vasil’yevka",
+    "country": "UA",
+    "coord": {
+      "lon": 35.299999,
+      "lat": 47.433331
+    }
+  },
+  {
+    "id": 711165,
+    "name": "Burchak",
+    "country": "UA",
+    "coord": {
+      "lon": 35.299999,
+      "lat": 47.383331
+    }
+  },
+  {
+    "id": 698410,
+    "name": "Orekhovskiy",
+    "country": "UA",
+    "coord": {
+      "lon": 35.316669,
+      "lat": 47.333328
+    }
+  },
+  {
+    "id": 689482,
+    "name": "Vishnëvyy",
+    "country": "UA",
+    "coord": {
+      "lon": 35.333328,
+      "lat": 47.299999
+    }
+  },
+  {
+    "id": 696262,
+    "name": "Pryshyb",
+    "country": "UA",
+    "coord": {
+      "lon": 35.322781,
+      "lat": 47.260281
+      }
+    }
+  ]

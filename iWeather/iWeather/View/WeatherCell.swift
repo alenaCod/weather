@@ -24,7 +24,7 @@ class WeatherCell: UITableViewCell {
         //DateUtil.dtToDate(dt: weather.dt).dayOfWeek()
         //print("cell dt:", weather.dt)
         
-       // temperatureLabel.text = Util.kelvinToСesium(temp: weather.main)
+      temperatureLabel.text = Util.getMaxTemperatureInDay(data: weather.value) + "/" + Util.getMinTemperatureInDay(data: weather.value)
        // cloudImage.image = Util.getWeatherImageBlack(type: weather.weather[0].main)
     }
     

@@ -20,17 +20,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqf-IJ-har">
-                        <rect key="frame" x="16" y="25.5" width="150" height="21"/>
+                        <rect key="frame" x="16" y="25.5" width="50" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="dwH-Ju-2gS"/>
-                            <constraint firstAttribute="width" constant="150" id="wFW-Sh-tVo"/>
+                            <constraint firstAttribute="width" constant="50" id="wFW-Sh-tVo"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27/19" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zG7-vE-9M9">
-                        <rect key="frame" x="174" y="22.5" width="84" height="27"/>
+                        <rect key="frame" x="74" y="22.5" width="184" height="27"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="27" id="FOC-VE-BeR"/>
                         </constraints>

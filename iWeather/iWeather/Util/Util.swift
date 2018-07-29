@@ -29,16 +29,6 @@ class Util {
         return res
     }
     
-    class func percentHumidity (temp:JSONMain) -> String {
-      let res = temp.humidity.toString() + "%"
-        return res
-    }
-    
-    class func wind (temp:JSONWind) -> String {
-       let res = Int(temp.speed.rounded()).toString() + "m/sec"
-        return res
-    }
-    
     class func getWeatherImage(type: String) -> UIImage? {
         switch (type) {
             case TypeWeather.rain.rawValue:
@@ -91,14 +81,43 @@ class Util {
     
     //MARK: avg calculation
     
-    class func getAvgSpeed(data: [JSONWeatherData]) -> Int {
+    class func getAvgSpeed(data: [JSONWeatherData]) -> String {
         let speeds = data.map({$0.wind.speed})
         print("speeds :", speeds)
         let total = speeds.reduce(0, +)
         print("total :", total)
         let avgSpeed = total / Double(data.count)
         print("avgSpeed :", avgSpeed)
-        return Int(avgSpeed.rounded())
+        let currentAvgSpeed = Int(avgSpeed.rounded()).toString() + "m/sec"
+            return currentAvgSpeed
     }
     
+    class func getMaxTemperatureInDay(data: [JSONWeatherData])-> String {
+        let temp = data.map({$0.main.temp_max})
+        let currentTempMax = Int((temp.max()! - 273.15).rounded()).toString() + "°"
+            return currentTempMax
+    }
+    
+    class func getMinTemperatureInDay(data: [JSONWeatherData])-> String {
+        let temp = data.map({$0.main.temp_min})
+        let currentTempMin = Int((temp.min()! - 273.15).rounded()).toString() + "°"
+            return currentTempMin
+    }
+    
+    class func getAvgHumidity(data: [JSONWeatherData])-> String {
+        let humiditys = data.map({$0.main.humidity})
+        let totalHumiditys = humiditys.reduce(0, +)
+        let avgHumidity = totalHumiditys / data.count
+         return avgHumidity.toString() + "%"
+    }
+    
+    class func getAvgDirectionWind(data: [JSONWeatherData])-> Double {
+        let directionWind = data.map({$0.wind.deg})
+       // print("hum :", humiditys)
+        let totalWinds = directionWind.reduce(0, +)
+        //print("totalH :", totalHumiditys)
+        let avgDirectionWind = totalWinds / Double(data.count)
+        print("avgDirection :",avgDirectionWind)
+        return avgDirectionWind
+    }
 }
