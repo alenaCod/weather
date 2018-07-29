@@ -12,24 +12,20 @@ import Foundation
 class WeatherCell: UITableViewCell {
     
     @IBOutlet weak var dayWeek: UILabel!
-    
     @IBOutlet weak var temperatureLabel: UILabel!
-    
     @IBOutlet weak var cloudImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
-   func configureCell(forWeather weather : JSONWeatherData){
-//    dayWeek.text = weather.dt_txt + " - " + (DateUtil.getDayOfWeek(weather.dt_txt)?.toString())!
-//    dayWeek.text = DateUtil.stringToDate(strDate: weather.dt_txt)?.dayOfWeek()
-     dayWeek.text = DateUtil.dtToDate(dt: weather.dt).dayOfWeek()
-    temperatureLabel.text = Util.kelvinToСesium(temp: weather.main)
-    cloudImage.image = Util.getWeatherImageBlack(type: weather.weather[0].main)
-   // print("image ===:\(Util.getWeatherImage(type: weather.weather[0].main))")
     
+    func configureCell(forWeather weather: DailyData){
+        dayWeek.text =  DateUtil.stringToDate(dateString: weather.key)?.dayOfWeek()
+        //DateUtil.dtToDate(dt: weather.dt).dayOfWeek()
+        //print("cell dt:", weather.dt)
+        
+       // temperatureLabel.text = Util.kelvinToСesium(temp: weather.main)
+       // cloudImage.image = Util.getWeatherImageBlack(type: weather.weather[0].main)
     }
     
 }

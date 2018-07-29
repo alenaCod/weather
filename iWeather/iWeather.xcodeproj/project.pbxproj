@@ -166,8 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				B3FD73CB21093B030033776A /* WeatherCell.swift */,
-				B300CAAD210A457F0049E723 /* WeatherCollectionViewCell.swift */,
 				B3FD73CC21093B030033776A /* WeatherCell.xib */,
+				B300CAAD210A457F0049E723 /* WeatherCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -183,8 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				B3D826172107AFFF00693D17 /* Int + Extension.swift */,
-				B3BC8AF82107BFDB003454C8 /* String + Extension.swift */,
 				B3FD73D1210958FB0033776A /* Date+Extension.swift */,
+				B3BC8AF82107BFDB003454C8 /* String + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";

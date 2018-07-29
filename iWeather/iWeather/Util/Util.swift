@@ -54,21 +54,21 @@ class Util {
     
   class  func getWindImage(typeWind: Double) -> UIImage? {
         switch (typeWind) {
-        case 0.0...22.0, 338.0...360.0:
+        case 0.0...22.9, 338.0...360.9:
             return UIImage(named: "icon_wind_n")
-        case 23.0...67.0:
+        case 23.0...67.9:
             return UIImage(named: "icon_wind_ne")
-        case 68.0...112.0:
+        case 68.0...112.9:
             return UIImage(named: "icon_wind_e")
-        case 113.0...157.0:
+        case 113.0...157.9:
             return UIImage(named: "icon_wind_se")
-        case 158.0...202.0:
+        case 158.0...202.9:
             return UIImage(named: "icon_wind_s")
-        case 203.0...246.0:
+        case 203.0...246.9:
             return UIImage(named: "icon_wind_sw")
-        case 247.0...292.0:
+        case 247.0...292.9:
             return UIImage(named: "icon_wind_w")
-        case 293.0...237.0:
+        case 293.0...337.9:
             return UIImage(named: "icon_wind_nw")
         default:
             return nil
@@ -87,6 +87,18 @@ class Util {
         default:
             return nil
         }
+    }
+    
+    //MARK: avg calculation
+    
+    class func getAvgSpeed(data: [JSONWeatherData]) -> Int {
+        let speeds = data.map({$0.wind.speed})
+        print("speeds :", speeds)
+        let total = speeds.reduce(0, +)
+        print("total :", total)
+        let avgSpeed = total / Double(data.count)
+        print("avgSpeed :", avgSpeed)
+        return Int(avgSpeed.rounded())
     }
     
 }

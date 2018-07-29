@@ -26,7 +26,6 @@ final class ParseUtil {
                 } catch {
                     comletion([])
                 }
-//
             } catch let error {
                 print("parse error: \(error.localizedDescription)")
             }

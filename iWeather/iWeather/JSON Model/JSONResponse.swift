@@ -9,7 +9,6 @@
 import Foundation
 
 struct JSONResponse: Codable {
-    //let cnt:Int
     let city: JSONCity
     let list: [JSONWeatherData]
 }
@@ -20,7 +19,7 @@ struct JSONCity: Codable {
 
 struct JSONWeatherData: Codable {
     let dt_txt: String
-    let dt: Double
+    let dt: Int
     let main: JSONMain
     let weather: [JSONWeather]
     let wind: JSONWind
