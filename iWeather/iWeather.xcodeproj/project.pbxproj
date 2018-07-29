@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		B300CAAE210A457F0049E723 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B300CAAD210A457F0049E723 /* WeatherCollectionViewCell.swift */; };
 		B3372A6B210777D70017701D /* JSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3372A6A210777D70017701D /* JSONResponse.swift */; };
-		B3667AE7210BFD9200FD4CEC /* city.list.json in Resources */ = {isa = PBXBuildFile; fileRef = B3667AE6210BFD9200FD4CEC /* city.list.json */; };
 		B3667AE9210BFDD500FD4CEC /* ParseUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3667AE8210BFDD500FD4CEC /* ParseUtil.swift */; };
 		B3667AEB210BFEDD00FD4CEC /* JSONCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3667AEA210BFEDD00FD4CEC /* JSONCities.swift */; };
+		B36EBC96210E834A0041DC81 /* city.list.json in Resources */ = {isa = PBXBuildFile; fileRef = B36EBC95210E83490041DC81 /* city.list.json */; };
 		B382067C210E47EF00A8B874 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B382067B210E47EF00A8B874 /* LocationsViewController.swift */; };
 		B382067F210E486000A8B874 /* AutoCompleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B382067E210E486000A8B874 /* AutoCompleteCell.swift */; };
 		B3820681210E487200A8B874 /* AutoCompleteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3820680210E487200A8B874 /* AutoCompleteCell.xib */; };
@@ -39,9 +39,9 @@
 		4AC3C069D03F169AA4B74949 /* Pods-iWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWeather.release.xcconfig"; path = "Pods/Target Support Files/Pods-iWeather/Pods-iWeather.release.xcconfig"; sourceTree = "<group>"; };
 		B300CAAD210A457F0049E723 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		B3372A6A210777D70017701D /* JSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONResponse.swift; sourceTree = "<group>"; };
-		B3667AE6210BFD9200FD4CEC /* city.list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list.json; sourceTree = "<group>"; };
 		B3667AE8210BFDD500FD4CEC /* ParseUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseUtil.swift; sourceTree = "<group>"; };
 		B3667AEA210BFEDD00FD4CEC /* JSONCities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCities.swift; sourceTree = "<group>"; };
+		B36EBC95210E83490041DC81 /* city.list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list.json; sourceTree = "<group>"; };
 		B382067B210E47EF00A8B874 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		B382067E210E486000A8B874 /* AutoCompleteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteCell.swift; sourceTree = "<group>"; };
 		B3820680210E487200A8B874 /* AutoCompleteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutoCompleteCell.xib; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 		B308A3A1210AA9DB0073B73F /* data */ = {
 			isa = PBXGroup;
 			children = (
-				B3667AE6210BFD9200FD4CEC /* city.list.json */,
+				B36EBC95210E83490041DC81 /* city.list.json */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -291,11 +291,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3FD73CE21093B030033776A /* WeatherCell.xib in Resources */,
-				B3667AE7210BFD9200FD4CEC /* city.list.json in Resources */,
 				B3E8DD56210DF3BD001DB276 /* cloud.png in Resources */,
 				B3E29FEC2105E47F00D7FAE1 /* LaunchScreen.storyboard in Resources */,
 				B3E29FE92105E47F00D7FAE1 /* Assets.xcassets in Resources */,
 				B3E29FE72105E47D00D7FAE1 /* Main.storyboard in Resources */,
+				B36EBC96210E834A0041DC81 /* city.list.json in Resources */,
 				B3820681210E487200A8B874 /* AutoCompleteCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
