@@ -249,7 +249,7 @@
                             </view>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRf-ga-KR4">
                                 <rect key="frame" x="0.0" y="667" width="375" height="180"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.54067095120747888" green="0.77577475706736243" blue="0.94056240717569983" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="pqm-qm-Al6"/>
                                 </constraints>

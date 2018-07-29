@@ -153,7 +153,6 @@ class Util {
             
             print("weightDic: ", weightDic)
             let maximum = weightDic.max { a, b in a.value < b.value }
-            print("maximum: ", maximum)
             print("maximum: ", maximum?.key)
             return maximum?.key ?? defaultImage
         }

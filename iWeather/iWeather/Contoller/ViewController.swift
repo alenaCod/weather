@@ -127,15 +127,15 @@ class ViewController: UIViewController {
         }
         print("dic: ", dic.count)
         let sorted = dic.sorted(by: { $0.0 < $1.0})
-        
-        for (key, value) in sorted {
-            print("=== ")
-            print("key: ", key)
-            
-            for v in value {
-                print("value: ", v.dt_txt)
-            }
-        }
+//        
+//        for (key, value) in sorted {
+//            print("=== ")
+//            print("key: ", key)
+//            
+//            for v in value {
+//                print("value: ", v.dt_txt)
+//            }
+//        }
         dailyWeatherData = sorted
     }
     
@@ -155,14 +155,14 @@ class ViewController: UIViewController {
         let avgMaxTemperature = Util.getAvgMaxTemperature(data: selected.value)
         let avgMinTemperature = Util.getAvgMinTemperature(data: selected.value)
         weatherTemperature.text = Util.kelvinToСesiumMaxMin(tempMax: avgMaxTemperature, tempMin: avgMinTemperature)
+        
         humidityLabel.text = Util.getAvgHumidity(data: selected.value)
+        
         let avgDirectionWind = Util.getAvgDirectionWind(data: selected.value)
         directionWindImage.image = Util.getWindImage(typeWind: avgDirectionWind)
         
         let avgImageWeather =  Util.getAvgImageWeather(data: selected.value)
         weatherImage.image = Util.getWeatherImage(type: avgImageWeather)
-        
-        print("weatheImage", weatherImage.image)
     }
     
     @objc func handleCityTap(sender: UITapGestureRecognizer? = nil) {
