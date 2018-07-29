@@ -1,0 +1,137 @@
+ [
+  {
+    "id": 687700,
+    "name": "Zaporizhzhya",
+    "country": "UA",
+    "coord": {
+      "lon": 35.183331,
+      "lat": 47.816669
+    }
+  },
+  {
+    "id": 702072,
+    "name": "Malokaterynivka",
+    "country": "UA",
+    "coord": {
+      "lon": 35.253891,
+      "lat": 47.6525
+    }
+  },
+  {
+    "id": 709930,
+    "name": "Dnipropetrovsk",
+    "country": "UA",
+    "coord": {
+      "lon": 34.98333,
+      "lat": 48.450001
+    }
+  },
+  {
+    "id": 703448,
+    "name": "Kiev",
+    "country": "UA",
+    "coord": {
+      "lon": 30.516666,
+      "lat": 50.433334
+    }
+  },
+  {
+    "id": 702550,
+    "name": "Lviv",
+    "country": "UA",
+    "coord": {
+      "lon": 24.023239,
+      "lat": 49.838261
+    }
+  },
+  {
+    "id": 691650,
+    "name": "Ternopil",
+    "country": "UA",
+    "coord": {
+      "lon": 25.60556,
+      "lat": 49.555889
+    }
+  },
+  {
+    "id": 701824,
+    "name": "Mariupol",
+    "country": "UA",
+    "coord": {
+      "lon": 37.533089,
+      "lat": 47.105701
+    }
+  },
+  {
+    "id": 702569,
+    "name": "Lutsk",
+    "country": "UA",
+    "coord": {
+      "lon": 25.34244,
+      "lat": 50.759319
+    }
+  },
+  {
+    "id": 705812,
+    "name": "Kirovohrad",
+    "country": "UA",
+    "coord": {
+      "lon": 32.259701,
+      "lat": 48.513199
+    }
+  },
+  {
+    "id": 700051,
+    "name": "Nikopol",
+    "country": "UA",
+    "coord": {
+      "lon": 34.39637,
+      "lat": 47.57119
+    }
+  },
+  {
+    "id": 692194,
+    "name": "Sumy",
+    "country": "UA",
+    "coord": {
+      "lon": 34.800289,
+      "lat": 50.9216
+    }
+  },
+  {
+    "id": 710735,
+    "name": "Chernihiv",
+    "country": "UA",
+    "coord": {
+      "lon": 31.28488,
+      "lat": 51.505508
+    }
+  },
+  {
+    "id": 710791,
+    "name": "Cherkasy",
+    "country": "UA",
+    "coord": {
+      "lon": 32.062069,
+      "lat": 49.428539
+    }
+  },
+  {
+    "id": 706369,
+    "name": "Khmelnytskyy",
+    "country": "UA",
+    "coord": {
+      "lon": 26.996531,
+      "lat": 49.421612
+    }
+  },
+  {
+    "id": 3489741,
+    "name": "Little London",
+    "country": "JM",
+    "coord": {
+      "lon": -78.216408,
+      "lat": 18.248301
+    }
+  }
+]
