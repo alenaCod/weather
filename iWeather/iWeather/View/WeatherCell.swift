@@ -21,11 +21,11 @@ class WeatherCell: UITableViewCell {
     
     func configureCell(forWeather weather: DailyData){
         dayWeek.text =  DateUtil.stringToDate(dateString: weather.key)?.dayOfWeek()
-        //DateUtil.dtToDate(dt: weather.dt).dayOfWeek()
-        //print("cell dt:", weather.dt)
-        
-      temperatureLabel.text = Util.getMaxTemperatureInDay(data: weather.value) + "/" + Util.getMinTemperatureInDay(data: weather.value)
-       // cloudImage.image = Util.getWeatherImageBlack(type: weather.weather[0].main)
+        let avgMaxTemperature = Util.getAvgMaxTemperature(data: weather.value)
+        let avgMinTemperature = Util.getAvgMinTemperature(data: weather.value)
+      temperatureLabel.text = Util.kelvinToСesiumMaxMin(tempMax: avgMaxTemperature, tempMin: avgMinTemperature)
+        let avgImageWeather = Util.getAvgImageWeather(data: weather.value)
+        cloudImage.image = Util.getWeatherImageBlack(type: avgImageWeather)
     }
     
 }

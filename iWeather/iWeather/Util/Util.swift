@@ -10,22 +10,17 @@ import Foundation
 import UIKit
 
 class Util {
-    class func kelvinToСesium(temp: JSONMain) -> String {
-        let res = Int((temp.temp_max - 273.15).rounded()).toString() + "°" + "/" + Int((temp.temp_min - 273.15).rounded()).toString() + "°"
-        return res
-    }
     
-    class func kelvinToСesiumMaxMin(tempMax: Double, tempMin:Double) -> String {
-        let res = Int((tempMax - 273.15).rounded()).toString() + "°" + "/" + Int((tempMin - 273.15).rounded()).toString() + "°"
+    class func kelvinToСesiumMaxMin(tempMax: Double?, tempMin:Double?) -> String {
+        guard let _tempMax = tempMax, let _tempMin = tempMin else {
+            return ""
+        }
+        let res = Int((_tempMax - 273.15).rounded()).toString() + "°" + "/" + Int((_tempMin - 273.15).rounded()).toString() + "°"
         return res
     }
     
     class func kelvinToСesiumTempMax(temp: JSONMain) -> String {
         let res = Int((temp.temp_max - 273.15).rounded()).toString() + "°"
-        return res
-    }
-    class func kelvinToСesiumTemp(temp: Double) -> String {
-        let res = Int((temp  -  273.15).rounded()).toString() + "°"
         return res
     }
     
@@ -83,24 +78,21 @@ class Util {
     
     class func getAvgSpeed(data: [JSONWeatherData]) -> String {
         let speeds = data.map({$0.wind.speed})
-        print("speeds :", speeds)
         let total = speeds.reduce(0, +)
-        print("total :", total)
         let avgSpeed = total / Double(data.count)
-        print("avgSpeed :", avgSpeed)
         let currentAvgSpeed = Int(avgSpeed.rounded()).toString() + "m/sec"
             return currentAvgSpeed
     }
     
-    class func getMaxTemperatureInDay(data: [JSONWeatherData])-> String {
+    class func getAvgMaxTemperature(data: [JSONWeatherData])-> Double? {
         let temp = data.map({$0.main.temp_max})
-        let currentTempMax = Int((temp.max()! - 273.15).rounded()).toString() + "°"
+        let currentTempMax = temp.max()//Int((temp.max()! - 273.15).rounded()).toString() + "°"
             return currentTempMax
     }
     
-    class func getMinTemperatureInDay(data: [JSONWeatherData])-> String {
+    class func getAvgMinTemperature(data: [JSONWeatherData])-> Double? {
         let temp = data.map({$0.main.temp_min})
-        let currentTempMin = Int((temp.min()! - 273.15).rounded()).toString() + "°"
+        let currentTempMin = temp.min()//Int((temp.min()! - 273.15).rounded()).toString() + "°"
             return currentTempMin
     }
     
@@ -113,11 +105,58 @@ class Util {
     
     class func getAvgDirectionWind(data: [JSONWeatherData])-> Double {
         let directionWind = data.map({$0.wind.deg})
-       // print("hum :", humiditys)
         let totalWinds = directionWind.reduce(0, +)
-        //print("totalH :", totalHumiditys)
         let avgDirectionWind = totalWinds / Double(data.count)
-        print("avgDirection :",avgDirectionWind)
-        return avgDirectionWind
+            return avgDirectionWind
+    }
+    
+    class func getAvgImageWeather(data: [JSONWeatherData])-> String {
+        let defaultImage = TypeWeather.clear.rawValue
+        
+        var dic = [String: Int]()
+        data.forEach {
+            let key = $0.weather[0].main
+            let filterArray = data.filter { $0.weather[0].main.contains(key) }
+            dic[key] = filterArray.count
+        }
+        print("dic: ", dic)
+
+        let max = dic.values.max()
+        print("max: ", max)
+        
+        // found all max values
+        let allmax = dic.filter { $0.value == max }
+        print("allmax: ", allmax)
+        
+        if allmax.count == 1 {
+            // if only 1 max result
+            print("allmax: ", Array(allmax.keys)[0])
+            return Array(allmax.keys)[0]
+        } else {
+            // if more: define weights
+            let wRain = 3
+            let wCloud = 2
+            let wClear = 1
+            
+            var weightDic = [String: Int]()
+            for (key,value) in allmax {
+                if key == TypeWeather.clear.rawValue {
+                    weightDic[key] = value * wClear
+                }
+                else if key == TypeWeather.clouds.rawValue {
+                    weightDic[key] = value * wCloud
+                }
+                else if key == TypeWeather.rain.rawValue {
+                    weightDic[key] = value * wRain
+                }
+            }
+            
+            print("weightDic: ", weightDic)
+            let maximum = weightDic.max { a, b in a.value < b.value }
+            print("maximum: ", maximum)
+            print("maximum: ", maximum?.key)
+            return maximum?.key ?? defaultImage
+        }
+        return  defaultImage
     }
 }

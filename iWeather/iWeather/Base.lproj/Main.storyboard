@@ -247,8 +247,8 @@
                                     <constraint firstItem="JZA-fr-Jac" firstAttribute="leading" secondItem="5rK-Z5-jsK" secondAttribute="trailing" constant="8" id="yr4-O7-XrM"/>
                                 </constraints>
                             </view>
-                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRf-ga-KR4">
-                                <rect key="frame" x="0.0" y="487" width="375" height="180"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRf-ga-KR4">
+                                <rect key="frame" x="0.0" y="667" width="375" height="180"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="pqm-qm-Al6"/>
@@ -283,7 +283,7 @@
                             <constraint firstItem="N04-hb-MqB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tQX-Tc-lWu"/>
                             <constraint firstItem="thH-d4-sXD" firstAttribute="top" secondItem="N04-hb-MqB" secondAttribute="bottom" id="x7B-iU-tHL"/>
                             <constraint firstItem="Bsb-i3-F4l" firstAttribute="top" secondItem="thH-d4-sXD" secondAttribute="bottom" constant="119" id="xsF-w5-LxT"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NRf-ga-KR4" secondAttribute="bottom" id="yLF-AZ-RwK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NRf-ga-KR4" secondAttribute="bottom" constant="-180" id="yLF-AZ-RwK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -294,6 +294,7 @@
                         <outlet property="dateLabel" destination="uR3-lh-Z7d" id="7H0-eG-rea"/>
                         <outlet property="directionWindImage" destination="JZA-fr-Jac" id="m8g-eu-apn"/>
                         <outlet property="humidityLabel" destination="5hd-2N-loj" id="Z2t-Ur-F4d"/>
+                        <outlet property="pickerBottomConstraint" destination="yLF-AZ-RwK" id="0U5-3l-Wu3"/>
                         <outlet property="pickerView" destination="NRf-ga-KR4" id="UDl-la-Izl"/>
                         <outlet property="speedWind" destination="5rK-Z5-jsK" id="r6F-7C-dlL"/>
                         <outlet property="tableView" destination="Bsb-i3-F4l" id="3tz-hG-P2y"/>

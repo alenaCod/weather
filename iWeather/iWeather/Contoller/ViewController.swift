@@ -14,15 +14,20 @@ enum TypeWeather: String {
     case clouds = "Clouds"
     case clear = "Clear"
 }
+
 typealias DailyData = (key: String, value: [JSONWeatherData])
 
 class ViewController: UIViewController {
-
+    
     static let nibName = "WeatherCell"
     static let cellIdentifier = "WeatherCellID"
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var pickerView: UIPickerView! {
+        didSet {
+            pickerView.setValue(UIColor.red, forKey: "textColor")
+        }
+    }
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var weatherTemperature: UILabel!
@@ -36,7 +41,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var speedWind: UILabel!
     @IBOutlet weak var directionWindImage: UIImageView!
-    
+    @IBOutlet weak var pickerBottomConstraint: NSLayoutConstraint!
     
     // Initial data obtained from server
     fileprivate var weatherData: [JSONWeatherData] = [] {
@@ -76,7 +81,7 @@ class ViewController: UIViewController {
             tableView.reloadData()
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,7 +117,7 @@ class ViewController: UIViewController {
         tableView.backgroundView = UIView(frame: .zero)
         tableView.tableFooterView = UIView(frame: .zero)
     }
-
+    
     private func buildDailyWeatherData() {
         var dic = [String: [JSONWeatherData]]()
         weatherData.forEach {
@@ -122,15 +127,14 @@ class ViewController: UIViewController {
         }
         print("dic: ", dic.count)
         let sorted = dic.sorted(by: { $0.0 < $1.0})
- 
+        
         for (key, value) in sorted {
             print("=== ")
             print("key: ", key)
-
+            
             for v in value {
                 print("value: ", v.dt_txt)
             }
-           
         }
         dailyWeatherData = sorted
     }
@@ -141,17 +145,24 @@ class ViewController: UIViewController {
         }
         selectedWeatherData = dailyWeatherData[0]
     }
-
+    
     private func populateView(selected: DailyData) {
         //TODO: find all array accroding to selected date
- 
+        
         dateLabel.text = DateUtil.stringToDate(dateString: selected.key)?.dateOfWeekAndMonth()
         speedWind.text = Util.getAvgSpeed(data: selected.value)
-        //TODO:..... print avg data
-        weatherTemperature.text = Util.getMaxTemperatureInDay(data: selected.value) + "/" + Util.getMinTemperatureInDay(data: selected.value)
+        
+        let avgMaxTemperature = Util.getAvgMaxTemperature(data: selected.value)
+        let avgMinTemperature = Util.getAvgMinTemperature(data: selected.value)
+        weatherTemperature.text = Util.kelvinToСesiumMaxMin(tempMax: avgMaxTemperature, tempMin: avgMinTemperature)
         humidityLabel.text = Util.getAvgHumidity(data: selected.value)
-        let r = Util.getAvgDirectionWind(data: selected.value)
-        directionWindImage.image = Util.getWindImage(typeWind: r)
+        let avgDirectionWind = Util.getAvgDirectionWind(data: selected.value)
+        directionWindImage.image = Util.getWindImage(typeWind: avgDirectionWind)
+        
+        let avgImageWeather =  Util.getAvgImageWeather(data: selected.value)
+        weatherImage.image = Util.getWeatherImage(type: avgImageWeather)
+        
+        print("weatheImage", weatherImage.image)
     }
     
     @objc func handleCityTap(sender: UITapGestureRecognizer? = nil) {
@@ -159,19 +170,14 @@ class ViewController: UIViewController {
     }
     
     fileprivate func displayPicker(isVisible: Bool) {
-        self.pickerView.isHidden = !isVisible
-        
-        //        UIView.animate(withDuration: 1.0, delay: 1.2, options: .curveEaseOut, animations: {
-        //
-        //            if isVisible {
-        //                var topFrame = self.view.frame
-        //                topFrame.origin.y -= self.pickerView.frame.size.height
-        //                self.pickerView.frame = topFrame
-        //            }
-        //
-        //        }, completion: { finished in
-        //            self.pickerView.isHidden = !isVisible
-        //        })
+      UIView.animate(withDuration: 0.5) {
+            if isVisible {
+                self.pickerBottomConstraint.constant = 0
+            } else {
+                self.pickerBottomConstraint.constant = -180
+            }
+            self.view.layoutIfNeeded()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -185,7 +191,7 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ViewController.cellIdentifier) as! WeatherCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-
+        
         cell.configureCell(forWeather: dailyWeatherData[indexPath.row])
         return cell
     }
@@ -198,13 +204,12 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         selectedWeatherData = dailyWeatherData[indexPath.row]
+        selectedWeatherData = dailyWeatherData[indexPath.row]
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 72
     }
-    
 }
 
 extension ViewController: UICollectionViewDelegate {
@@ -230,6 +235,7 @@ extension ViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return cities[row].name
     }
@@ -242,18 +248,7 @@ extension ViewController: UIPickerViewDataSource {
 extension ViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedCity = cities[row]
-        pickerView.isHidden = true
+        displayPicker(isVisible: false)
     }
 }
 
-/*
-
- guard let _type = selected.weather[0].main as? String, _type != "" else {
- return
- }
- weatherImage.image = Util.getWeatherImage(type:_type)
- 
- guard let _typeWind = selected.wind.deg.toString() as? String, _typeWind != "" else {
- return
- }
- */

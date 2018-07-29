@@ -1,5 +1,14 @@
  [
   {
+    "id": 524894,
+    "name": "Moskva",
+    "country": "RU",
+    "coord": {
+      "lon": 37.606667,
+      "lat": 55.761665
+    }
+  },
+  {
     "id": 699967,
     "name": "Nizhnyanka",
     "country": "UA",
