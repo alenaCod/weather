@@ -1,5 +1,5 @@
 //
-//  JSONCity.swift
+//  JSONLocation.swift
 //  iWeather
 //
 //  Created by Mac on 7/28/18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct JSONCities: Codable {
+struct JSONLocation: Codable {
     let name: String
     let id: Int
 }

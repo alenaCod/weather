@@ -7,12 +7,10 @@
 //
 
 import Foundation
-//import SwiftyJSON
-
 
 final class ParseUtil {
     
-    class func parseCities(comletion:((_ cities: [JSONCities])->())) {
+    class func parseLocations(comletion:((_ locations: [JSONLocation])->())) {
         if let path = Bundle.main.path(forResource: "city.list", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
@@ -20,9 +18,9 @@ final class ParseUtil {
                
                 let decoder = JSONDecoder()
                 do {
-                    let cities: [JSONCities] = try decoder.decode([JSONCities].self, from: data)
-                    print("cities: \(cities)")
-                    comletion(cities)
+                    let locations: [JSONLocation] = try decoder.decode([JSONLocation].self, from: data)
+                    print("cities: \(locations)")
+                    comletion(locations)
                 } catch {
                     comletion([])
                 }

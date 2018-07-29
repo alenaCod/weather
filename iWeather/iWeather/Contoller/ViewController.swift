@@ -23,11 +23,7 @@ class ViewController: UIViewController {
     static let cellIdentifier = "WeatherCellID"
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var pickerView: UIPickerView! {
-        didSet {
-            pickerView.setValue(UIColor.red, forKey: "textColor")
-        }
-    }
+
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var weatherTemperature: UILabel!
@@ -41,7 +37,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var speedWind: UILabel!
     @IBOutlet weak var directionWindImage: UIImageView!
-    @IBOutlet weak var pickerBottomConstraint: NSLayoutConstraint!
     
     // Initial data obtained from server
     fileprivate var weatherData: [JSONWeatherData] = [] {
@@ -51,18 +46,18 @@ class ViewController: UIViewController {
         }
     }
     
-    fileprivate var selectedCity: JSONCities? {
+    fileprivate var selectedLocation: JSONLocation? {
         didSet {
-            guard let _selectedCity = selectedCity else {
+            guard let _selectedLocation = selectedLocation else {
                 return
             }
-            updateData(city: _selectedCity)
+            updateData(city: _selectedLocation)
         }
     }
     
-    fileprivate var cities: [JSONCities] = [JSONCities]() {
+    fileprivate var locations = [JSONLocation]() {
         didSet {
-            pickerView.reloadAllComponents()
+            //TODO: rabdom or define accordinf to current location name
         }
     }
     
@@ -82,23 +77,38 @@ class ViewController: UIViewController {
         }
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    func setupNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.locationChanged),
+            name: NSNotification.Name(rawValue: "LocationChangeNotification"),
+            object: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadCities()
+        setupNotification()
+        loadLocations()
         initTableView()
         
         // load initial city
-        updateData(city: JSONCities(name: "Zaporizhzhya", id: 687700))
+        updateData(city: JSONLocation(name: "Zaporizhzhya", id: 687700))
     }
-    
-    private func loadCities() {
-        ParseUtil.parseCities(comletion: { [weak self] cities in
-            self?.cities = cities
+
+    private func loadLocations() {
+        ParseUtil.parseLocations(comletion: { [weak self] locations in
+            self?.locations = locations
         })
     }
     
-    private func updateData(city: JSONCities) {
+   
+    
+    private func updateData(city: JSONLocation) {
         cityNameLabel.text = city.name
         
         APIService.sharedInstance.getWeather(idCity: city.id, comletion: { [weak self] result in
@@ -166,18 +176,19 @@ class ViewController: UIViewController {
     }
     
     @objc func handleCityTap(sender: UITapGestureRecognizer? = nil) {
-        displayPicker(isVisible: true)
+        displayLocationsViewController()
     }
     
-    fileprivate func displayPicker(isVisible: Bool) {
-      UIView.animate(withDuration: 0.5) {
-            if isVisible {
-                self.pickerBottomConstraint.constant = 0
-            } else {
-                self.pickerBottomConstraint.constant = -180
-            }
-            self.view.layoutIfNeeded()
+    func displayLocationsViewController() {
+        self.performSegue(withIdentifier: "segueLocations", sender: self)
+    }
+
+    @objc func locationChanged(notification: NSNotification){
+        print("notification: ", notification)
+        guard let _location = notification.userInfo?["location"] as? JSONLocation else {
+            return
         }
+        selectedLocation = _location
     }
     
     override func didReceiveMemoryWarning() {
@@ -228,27 +239,6 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedWeatherData?.value.count ?? 0
-    }
-}
-
-extension ViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return cities[row].name
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return cities.count
-    }
-}
-
-extension ViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedCity = cities[row]
-        displayPicker(isVisible: false)
     }
 }
 
