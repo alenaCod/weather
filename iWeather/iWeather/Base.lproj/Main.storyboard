@@ -310,13 +310,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="78p-y9-k0H">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAF-qw-sho">
-                                        <rect key="frame" x="0.0" y="41" width="46" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAF-qw-sho">
+                                        <rect key="frame" x="0.0" y="45" width="20" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="6wX-qF-bHp"/>
-                                            <constraint firstAttribute="width" constant="46" id="jh4-af-l9a"/>
+                                            <constraint firstAttribute="height" constant="20" id="6wX-qF-bHp"/>
+                                            <constraint firstAttribute="width" constant="20" id="jh4-af-l9a"/>
                                         </constraints>
-                                        <state key="normal" title="Cancel">
+                                        <state key="normal" title="Cancel" image="ic_back">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -324,7 +324,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jb1-JS-Ggm">
-                                        <rect key="frame" x="62" y="41" width="248" height="30"/>
+                                        <rect key="frame" x="36" y="41" width="291" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="uU7-ie-Vn1"/>
                                         </constraints>
@@ -335,13 +335,13 @@
                                             <outlet property="delegate" destination="mEt-Zt-9tD" id="8av-RT-K8y"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0G-VR-qCS">
-                                        <rect key="frame" x="326" y="41" width="37" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0G-VR-qCS">
+                                        <rect key="frame" x="343" y="44" width="20" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="37" id="5JJ-fL-V9l"/>
-                                            <constraint firstAttribute="height" constant="30" id="AVo-sP-X4A"/>
+                                            <constraint firstAttribute="width" constant="20" id="5JJ-fL-V9l"/>
+                                            <constraint firstAttribute="height" constant="20" id="AVo-sP-X4A"/>
                                         </constraints>
-                                        <state key="normal" title="Done"/>
+                                        <state key="normal" title="Done" image="ic_search"/>
                                         <connections>
                                             <action selector="onDone:" destination="mEt-Zt-9tD" eventType="touchUpInside" id="Lra-2t-T75"/>
                                         </connections>
@@ -352,9 +352,9 @@
                                     <constraint firstAttribute="trailing" secondItem="I0G-VR-qCS" secondAttribute="trailing" constant="12" id="14T-e7-JS6"/>
                                     <constraint firstItem="I0G-VR-qCS" firstAttribute="leading" secondItem="Jb1-JS-Ggm" secondAttribute="trailing" constant="16" id="Gbu-Jp-6QB"/>
                                     <constraint firstItem="kAF-qw-sho" firstAttribute="leading" secondItem="78p-y9-k0H" secondAttribute="leading" id="Okn-v0-YEy"/>
-                                    <constraint firstAttribute="bottom" secondItem="I0G-VR-qCS" secondAttribute="bottom" constant="13" id="Z9a-Ec-zmr"/>
+                                    <constraint firstAttribute="bottom" secondItem="I0G-VR-qCS" secondAttribute="bottom" constant="20" id="Z9a-Ec-zmr"/>
                                     <constraint firstAttribute="height" constant="84" id="hcA-zB-NfO"/>
-                                    <constraint firstAttribute="bottom" secondItem="kAF-qw-sho" secondAttribute="bottom" constant="13" id="po1-IH-D1k"/>
+                                    <constraint firstAttribute="bottom" secondItem="kAF-qw-sho" secondAttribute="bottom" constant="19" id="po1-IH-D1k"/>
                                     <constraint firstAttribute="bottom" secondItem="Jb1-JS-Ggm" secondAttribute="bottom" constant="13" id="uDi-7v-Kub"/>
                                     <constraint firstItem="Jb1-JS-Ggm" firstAttribute="leading" secondItem="kAF-qw-sho" secondAttribute="trailing" constant="16" id="wl4-uZ-zoq"/>
                                 </constraints>
@@ -385,9 +385,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_back" width="50" height="50"/>
         <image name="ic_humidity" width="50" height="50"/>
         <image name="ic_my_location" width="50" height="50"/>
         <image name="ic_place" width="50" height="50"/>
+        <image name="ic_search" width="50" height="50"/>
         <image name="ic_temp" width="50" height="50"/>
         <image name="ic_white_day_bright" width="109" height="109"/>
         <image name="ic_wind" width="50" height="50"/>
