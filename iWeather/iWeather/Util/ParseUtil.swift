@@ -14,12 +14,11 @@ final class ParseUtil {
         if let path = Bundle.main.path(forResource: "city.list", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-           
-               
+
                 let decoder = JSONDecoder()
                 do {
                     let locations: [JSONLocation] = try decoder.decode([JSONLocation].self, from: data)
-                    print("cities: \(locations)")
+                    //print("locations: \(locations)")
                     comletion(locations)
                 } catch {
                     comletion([])

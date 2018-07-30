@@ -17,6 +17,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     func configure(forWeather weather:JSONWeatherData){
         tempLable.text = Util.kelvinToСesiumTempMax(temp: weather.main)
         imageWeather.image = Util.getWeatherImage(type: weather.weather[0].main)
+        
         let t = weather.dt_txt.split(separator: " ")[1].split(separator: ":")
         timeLable.text = String(t[0]) + ":" + String(t[1]) 
     }

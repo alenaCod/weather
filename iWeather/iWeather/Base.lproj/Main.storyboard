@@ -110,6 +110,9 @@
                                             <constraint firstAttribute="height" constant="20" id="r49-BH-s9g"/>
                                         </constraints>
                                         <state key="normal" title=" " image="ic_place"/>
+                                        <connections>
+                                            <action selector="onLocationClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6oW-uN-Wwa"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8WG-z0-6zb">
                                         <rect key="frame" x="52" y="25" width="245" height="21"/>

@@ -57,7 +57,6 @@ class Util {
             return UIImage(named: "icon_wind_nw")
         default:
             return nil
-            
         }
     }
     
@@ -75,7 +74,6 @@ class Util {
     }
     
     //MARK: avg calculation
-    
     class func getAvgSpeed(data: [JSONWeatherData]) -> String {
         let speeds = data.map({$0.wind.speed})
         let total = speeds.reduce(0, +)
@@ -86,13 +84,13 @@ class Util {
     
     class func getAvgMaxTemperature(data: [JSONWeatherData])-> Double? {
         let temp = data.map({$0.main.temp_max})
-        let currentTempMax = temp.max()//Int((temp.max()! - 273.15).rounded()).toString() + "°"
+        let currentTempMax = temp.max()
             return currentTempMax
     }
     
     class func getAvgMinTemperature(data: [JSONWeatherData])-> Double? {
         let temp = data.map({$0.main.temp_min})
-        let currentTempMin = temp.min()//Int((temp.min()! - 273.15).rounded()).toString() + "°"
+        let currentTempMin = temp.min()
             return currentTempMin
     }
     
@@ -119,18 +117,14 @@ class Util {
             let filterArray = data.filter { $0.weather[0].main.contains(key) }
             dic[key] = filterArray.count
         }
-        print("dic: ", dic)
 
         let max = dic.values.max()
-        print("max: ", max)
-        
+
         // found all max values
         let allmax = dic.filter { $0.value == max }
-        print("allmax: ", allmax)
-        
+
         if allmax.count == 1 {
             // if only 1 max result
-            print("allmax: ", Array(allmax.keys)[0])
             return Array(allmax.keys)[0]
         } else {
             // if more: define weights
@@ -150,12 +144,9 @@ class Util {
                     weightDic[key] = value * wRain
                 }
             }
-            
-            print("weightDic: ", weightDic)
+
             let maximum = weightDic.max { a, b in a.value < b.value }
-            print("maximum: ", maximum?.key)
             return maximum?.key ?? defaultImage
         }
-        return  defaultImage
     }
 }
