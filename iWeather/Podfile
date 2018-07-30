@@ -6,7 +6,7 @@ target 'iWeather' do
   use_frameworks!
 
   # Pods for iWeather
-  #pod 'Alamofire', '~> 4.7'
+  pod 'Alamofire', '~> 4.7'
   
 
 end
