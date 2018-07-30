@@ -118,7 +118,7 @@ class ViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        locationManager.distanceFilter = 5000.0
+        locationManager.distanceFilter = 200.0
         locationManager.pausesLocationUpdatesAutomatically = true
         locationManager.activityType = .fitness
         locationManager.allowsBackgroundLocationUpdates = false
