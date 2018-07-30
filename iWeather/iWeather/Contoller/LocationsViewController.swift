@@ -18,24 +18,13 @@ class LocationsViewController: UIViewController {
             searchField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         }
     }
-    
-    var selectedLocation: JSONLocation?
-    
-    var parsedLocations = [JSONLocation]()
-    
-    var filteredLocations: [JSONLocation] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
     @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var btnDone: UIButton! {
         didSet {
             btnDone.isHidden = true
         }
     }
-    
+
     @IBAction func onCancel(_ sender: Any) {
         dismiss(animated: true, completion:nil)
     }
@@ -50,19 +39,20 @@ class LocationsViewController: UIViewController {
         })
     }
     
+    
+    var selectedLocation: JSONLocation?
+    var parsedLocations = [JSONLocation]()
+    var filteredLocations: [JSONLocation] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         filteredLocations = parsedLocations
         initTable()
-        //loadLocations()
-    }
-    
-    
-    private func loadLocations() {
-        ParseUtil.parseLocations(comletion: { [weak self] locations in
-            self?.parsedLocations = locations
-        })
     }
     
     func initTable() {

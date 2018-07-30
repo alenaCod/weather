@@ -36,6 +36,24 @@
     }
   },
   {
+    "id": 695594,
+    "name": "Rivne",
+    "country": "UA",
+    "coord": {
+      "lon": 26.22743,
+      "lat": 50.623081
+    }
+  },
+  {
+    "id": 700568,
+    "name": "Mykolayiv",
+    "country": "UA",
+    "coord": {
+      "lon": 23.98522,
+      "lat": 49.52372
+    }
+  },
+  {
     "id": 702550,
     "name": "Lviv",
     "country": "UA",
@@ -132,6 +150,96 @@
     "coord": {
       "lon": -78.216408,
       "lat": 18.248301
+    }
+  },
+  {
+    "id": 6619347,
+    "name": "Navi Mumbai",
+    "country": "IN",
+    "coord": {
+      "lon": 73.015823,
+      "lat": 19.03681
+    }
+  },
+  {
+    "id": 3669859,
+    "name": "San Francisco",
+    "country": "CO",
+    "coord": {
+      "lon": -73.210602,
+      "lat": 5.56453
+    }
+  },
+  {
+    "id": 1819730,
+    "name": "Hong Kong Special Administrative Region",
+    "country": "HK",
+    "coord": {
+      "lon": 114.166672,
+      "lat": 22.25
+    }
+  },
+  {
+    "id": 5106292,
+    "name": "West New York",
+    "country": "US",
+    "coord": {
+      "lon": -74.014313,
+      "lat": 40.78788
+    }
+  },
+  {
+    "id": 1850692,
+    "name": "Nishi-Tokyo-shi",
+    "country": "JP",
+    "coord": {
+      "lon": 139.5383,
+      "lat": 35.725262
+    }
+  },
+  {
+    "id": 3451189,
+    "name": "Estado do Rio de Janeiro",
+    "country": "BR",
+    "coord": {
+      "lon": -42.5,
+      "lat": -22
+    }
+  },
+  {
+    "id": 3994604,
+    "name": "Nuevo Mexico",
+    "country": "MX",
+    "coord": {
+      "lon": -103.433327,
+      "lat": 20.75
+    }
+  },
+  {
+    "id": 696643,
+    "name": "Poltava",
+    "country": "UA",
+    "coord": {
+      "lon": 34.54073,
+      "lat": 49.593731
+    }
+  },
+  {
+    "id": 690791,
+    "name": "Ukraine",
+    "country": "UA",
+    "coord": {
+      "lon": 32,
+      "lat": 49
+    }
+  },
+  {
+    "id": 5344994,
+    "name": "East Los Angeles",
+    "country": "US",
+    "coord": {
+      "lon": -118.17202,
+      "lat": 34.023899
     }
   }
 ]

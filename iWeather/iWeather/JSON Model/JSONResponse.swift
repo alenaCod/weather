@@ -9,12 +9,7 @@
 import Foundation
 
 struct JSONResponse: Codable {
-    let city: JSONCity
     let list: [JSONWeatherData]
-}
-
-struct JSONCity: Codable {
-    let name:String 
 }
 
 struct JSONWeatherData: Codable {

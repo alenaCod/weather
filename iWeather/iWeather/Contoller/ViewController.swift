@@ -38,6 +38,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var speedWind: UILabel!
     @IBOutlet weak var directionWindImage: UIImageView!
     
+    @IBAction func onLocationClick(_ sender: Any) {
+        displayLocationsViewController()
+    }
+    
     private var locationManager = CLLocationManager()
     fileprivate var currentLocation: CLLocation?
     
@@ -49,6 +53,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // Current selected location
     fileprivate var selectedLocation: JSONLocation? {
         didSet {
             guard let _selectedLocation = selectedLocation else {
@@ -97,17 +102,35 @@ class ViewController: UIViewController {
         initTableView()
         
         // load initial city
-        //updateData(location: JSONLocation(name: "Zaporizhzhya", id: 687700))
+        updateData(location: JSONLocation(name: "Zaporizhzhya", id: 687700))
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueLocations"{
+            if let locationsViewController = segue.destination as? LocationsViewController{
+                locationsViewController.parsedLocations = locations
+            }
+        }
+    }
+
+    func startLocationUpdates() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        locationManager.distanceFilter = 5000.0
+        locationManager.pausesLocationUpdatesAutomatically = true
+        locationManager.activityType = .fitness
+        locationManager.allowsBackgroundLocationUpdates = false
+        locationManager.startUpdatingLocation()
+    }
+    
     private func loadLocations() {
         ParseUtil.parseLocations(comletion: { [weak self] locations in
             self?.locations = locations
         })
     }
-    
-   
-    
+
     private func updateData(location: JSONLocation) {
         cityNameLabel.text = location.name
         
@@ -116,7 +139,7 @@ class ViewController: UIViewController {
             if let _result = result as? JSONResponse {
                 self?.weatherData = _result.list
             } else {
-                print("to do reset")
+                self?.weatherData = []
             }
         })
     }
@@ -135,38 +158,21 @@ class ViewController: UIViewController {
             let filterArray = weatherData.filter { $0.dt_txt.contains(dateKey) }
             dic[dateKey] = filterArray
         }
-        print("dic: ", dic.count)
+
         let sorted = dic.sorted(by: { $0.0 < $1.0})
-//        
-//        for (key, value) in sorted {
-//            print("=== ")
-//            print("key: ", key)
-//            
-//            for v in value {
-//                print("value: ", v.dt_txt)
-//            }
-//        }
         dailyWeatherData = sorted
     }
     
-    func initialSelectedData() {
+    // Get fisrt object from the daily array to inialize
+    private func initialSelectedData() {
         guard dailyWeatherData.count > 0  else {
             return
         }
         selectedWeatherData = dailyWeatherData[0]
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueLocations"{
-            if let locationsViewController = segue.destination as? LocationsViewController{
-                locationsViewController.parsedLocations = locations
-            }
-        }
-    }
-    
+
+    // Populate header view with data
     private func populateView(selected: DailyData) {
-        //TODO: find all array accroding to selected date
-        
         dateLabel.text = DateUtil.stringToDate(dateString: selected.key)?.dateOfWeekAndMonth()
         speedWind.text = Util.getAvgSpeed(data: selected.value)
         
@@ -182,11 +188,7 @@ class ViewController: UIViewController {
         let avgImageWeather =  Util.getAvgImageWeather(data: selected.value)
         weatherImage.image = Util.getWeatherImage(type: avgImageWeather)
     }
-    
-    @objc func handleCityTap(sender: UITapGestureRecognizer? = nil) {
-        displayLocationsViewController()
-    }
-    
+
     func displayLocationsViewController() {
         guard locations.count > 0 else {
             return
@@ -195,27 +197,17 @@ class ViewController: UIViewController {
     }
 
     @objc func locationChanged(notification: NSNotification){
-        print("notification: ", notification)
         guard let _location = notification.userInfo?["location"] as? JSONLocation else {
             return
         }
         selectedLocation = _location
     }
-    
-    func startLocationUpdates() {
-        
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        locationManager.distanceFilter = 5000.0
-        locationManager.pausesLocationUpdatesAutomatically = true
-        locationManager.activityType = .fitness
-        locationManager.allowsBackgroundLocationUpdates = false
-        locationManager.startUpdatingLocation()
+
+    @objc func handleCityTap(sender: UITapGestureRecognizer? = nil) {
+        displayLocationsViewController()
     }
-    
-    
+
+    // Search city by current location
     func fetchCityAndCountry(location: CLLocation, completion: @escaping (_ city: String?, _ country:  String?, _ error: Error?) -> ()) {
         CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
             completion(placemarks?.first?.locality,
@@ -224,13 +216,13 @@ class ViewController: UIViewController {
         }
     }
     
+    // Search defined city in parsed locations
     func searchForAutoDefinedLocation(cityName: String) {
         guard locations.count > 0 else {
             return
         }
         let location = locations.filter({ $0.name.lowercased().contains(cityName.lowercased())})
-        print("result: ", location)
-        
+
         guard let _last = location.last else {
             return
         }
@@ -241,7 +233,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 }
-
 
 extension ViewController: UITableViewDataSource {
     
@@ -276,12 +267,12 @@ extension ViewController: UICollectionViewDelegate {
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCollectionViewCell", for: indexPath) as! WeatherCollectionViewCell
+       
         if let hourlyWeatherData = selectedWeatherData?.value[indexPath.row] {
             cell.configure(forWeather: hourlyWeatherData)
         }
         return cell
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedWeatherData?.value.count ?? 0
@@ -291,9 +282,6 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Perform location-based activity
-        
-        //let newLocation = locations.last
         
         guard let location = locations.last as? CLLocation else {
             return
@@ -302,13 +290,9 @@ extension ViewController: CLLocationManagerDelegate {
         fetchCityAndCountry(location: location) { city, country, error in
             guard let city = city, let country = country, error == nil else { return }
             print(city + ", " + country)
-            print("latitude: ", location.coordinate.latitude)
-            print("longitude: ", location.coordinate.longitude)
-            
-            self.searchForAutoDefinedLocation(cityName: city)
-            //TODO: serch in parsed array
-        }
 
+            self.searchForAutoDefinedLocation(cityName: city)
+        }
     }
 }
 
